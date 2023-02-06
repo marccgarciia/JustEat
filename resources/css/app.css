@@ -1,0 +1,619 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@600&display=swap%27');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap');
+
+* {
+    font-family: 'Heebo', sans-serif;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: #f36805;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #f36805;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #f36805;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+} 
+/* ------------------------------------------ */
+/* -----------------GENERAL------------------ */
+/* ------------------------------------------ */
+.contenedor{
+    width: 100%;
+}
+/* ------------------------------------------ */
+/* ------------------NAVBAR------------------ */
+/* ------------------------------------------ */
+.navbar {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 30px;
+    -webkit-box-shadow: 0 4px 6px -6px rgb(70, 70, 70);
+    -moz-box-shadow: 0 4px 6px -6px rgb(59, 59, 59);
+    box-shadow: 0 4px 16px -6px rgb(141, 141, 141);
+    z-index: 1;
+}
+.logo img{
+    width: 180px;
+    padding: 0px;
+    margin-left: 100%;
+}
+.usuario a{
+    border: none;
+    text-decoration: none;
+    font-size: 40px;
+    color: #313131;
+}
+.usuario a:hover{
+    color: #f36805;
+    transition: all 0.4s;
+}
+/* ------------------------------------------ */
+/* ---------------CONTENIDO------------------ */
+/* ------------------------------------------ */
+.contenido {
+    width: 100%;
+    height: 70vh;
+    background: url("https://d2egcvq7li5bpq.cloudfront.net/a/hw/img/decoration/bg_hero-wide-veganuary.jpg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;  
+      
+}
+.login {
+    width: 30%;
+    height: 50vh;
+    background-color: white;
+    border-radius: 15px;
+    position: relative;
+    top: 35%;
+    box-shadow: 0px 0px 13px -4px #00000083;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.login h2{
+    color: #f36805;
+    font-size: 40px;
+    margin-bottom: 1.5%;
+}
+.login h3{
+    color: #1d1d1dde;
+    margin-bottom: 1.5%;
+    font-weight: 500;
+}
+.login input{
+    width: 100%;
+    height: 50px; 
+    padding: 10px;
+    border-radius: 25px;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    border: 1px solid #000000a1;
+    color: #f36805;
+}
+.login button{
+    padding: 10px;
+    border-radius: 20px;
+    margin-top: 3%;
+    margin-left: 40%;
+    margin-bottom: 2.5%;
+    border: 1px solid #f36805;
+    color: #f36805;
+    background-color: white;
+}
+.login button:hover{
+    color: white;
+    background-color: #f36805;
+    transition: all 0.4s;
+}
+.caja {
+    width: 100%;
+    height: 40vh;
+    margin-top: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagenCentrada {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagenCentrada img{
+    padding: 2%;
+    width: 25%;
+    float: left;
+}
+.textoCentrado {
+    margin-top: 2%;
+    float: left;
+    width: 50%;
+    align-items: center;
+    text-align: left;
+    justify-content: center;
+}
+.textoCentrado img{
+    width: 30%;
+    margin-top: 3%;
+}
+.buscar{
+    margin: 20px;
+}
+.buscar label {
+    margin: 20px;
+    font-size: 20px;
+}
+
+.buscar select {
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.buscar select:hover {
+    color: #ffffff;
+    background-color: #EF8633;
+    border: #EF8633;
+}
+
+.buscar input {
+    width: 30%;
+}
+
+/* CRUD */
+.main-container {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(3, 3, 3);
+}
+.div-table {
+  width: 80%;
+  text-align: center;
+  border: 1px solid#757575;
+}
+thead {
+  background-color:#303030;
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: rgb(115, 115, 115);
+}
+.th-padding{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.filtro{
+  width: 100%;
+  margin-top: 5%;
+}
+.formAdmin{
+  margin-left: 10%;
+}
+/* -------- */
+/* REGISTER Y RESPONSIVE */
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerregistrar {
+    background-color: rgb(249, 249, 249);
+    width: 100%;
+    height: 130vh;
+    position: absolute;
+    z-index: -3;
+}
+
+.cajaregistrar form{
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    border-radius: 14px;
+    top: 12%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(208, 208, 208, 0.305);
+}
+
+.cajaregistrar img {
+    width: 35%;
+    position: absolute;
+    top: -100px;
+    left: 36%;
+}
+
+.cajaregistrar h6 {
+    margin-top: 6.5vh;
+    font-size: 2vw;
+}
+
+.cajaregistrar label {
+    float: left;
+    text-align: left;
+    margin-top: 1vw;
+}
+
+.cajaregistrar input {
+    border-radius: 15px;
+    border-color: rgba(208, 208, 208, 0.305);
+    border-width: 0.7px;
+    width: 70%;
+    height: 3vw;
+    margin-top: 0.2vw;
+}
+
+.custom-btn {
+    margin-top: 1.5vw;
+    margin-bottom: 2vw;
+    width: 70%;
+    height: 3vw;
+    color: #fff;
+    border-radius: 35px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px 0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+    outline: none;
+    font-size: 1vw;
+}
+
+.btn-1 {
+    background: #f86404;
+    background: linear-gradient(0deg, #f86404 0%, #f86404 100%);
+    border: none;
+}
+
+.btn-1:hover {
+    background: #c14d00;
+    background: linear-gradient(0deg, #cf5300 0%, #f86404 100%);
+}
+
+@media screen and (max-width: 1590px) {
+    .cajaregistrar {
+        width: 27%;
+    }
+    .cajaregistrar img {
+        width: 35%;
+        position: absolute;
+        top: -65px;
+        left: 36%;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .cajaregistrar {
+        width: 33%;
+        top: 16%;
+    }
+    .cajaregistrar img {
+        width: 35%;
+        top: -65px;
+        left: 36%;
+    }
+    .cajaregistrar label {
+        margin-top: 1.3vw;
+    }
+    .cajaregistrar input {
+        border-radius: 15px;
+        width: 70%;
+        height: 4vw;
+        margin-top: 0.4vw;
+    }
+    .custom-btn {
+        margin-top: 2vw;
+        margin-bottom: 2.2vw;
+        width: 70%;
+        height: 4vw;
+        font-size: 1.4vw;
+    }
+}
+
+@media screen and (max-width: 1110px) {
+    .cajaregistrar {
+        width: 37%;
+        top: 17%;
+    }
+    .cajaregistrar img {
+        width: 35%;
+        top: -60px;
+    }
+    .cajaregistrar label {
+        margin-top: 2vw;
+    }
+    .cajaregistrar input {
+        border-radius: 15px;
+        width: 70%;
+        height: 4vw;
+        margin-top: 0.4vw;
+    }
+    .custom-btn {
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+        width: 70%;
+        height: 4.5vw;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .cajaregistrar form{
+        width: 42%;
+        top: 14%;
+    }
+    .cajaregistrar img {
+        width: 35%;
+        top: -65px;
+    }
+    .cajaregistrar h6 {
+        font-size: 3vw;
+    }
+    .cajaregistrar label {
+        margin-top: 3.2vw;
+    }
+    .cajaregistrar input {
+        border-radius: 15px;
+        width: 73%;
+        height: 4.8vw;
+        margin-top: 0.5vw;
+    }
+    .custom-btn {
+        margin-top: 3vw;
+        margin-bottom: 3vw;
+        width: 70%;
+        height: 4.8vw;
+        font-size: 2vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .cajaregistrar form{
+        width: 55%;
+        top: 14%;
+    }
+    .cajaregistrar img {
+        width: 35%;
+        top: -60px;
+    }
+    .cajaregistrar h6 {
+        font-size: 4vw;
+    }
+    .cajaregistrar label {
+        margin-top: 4vw;
+    }
+    .cajaregistrar input {
+        border-radius: 15px;
+        width: 73%;
+        height: 6.5vw;
+        margin-top: 0.5vw;
+    }
+    .custom-btn {
+        margin-top: 4vw;
+        margin-bottom: 4vw;
+        width: 70%;
+        height: 6.5vw;
+        font-size: 2.7vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .cajaregistrar form {
+        width: 75%;
+        top: 15%;
+    }
+    .cajaregistrar img {
+        width: 35%;
+        top: -60px;
+    }
+    .cajaregistrar h6 {
+        font-size: 5vw;
+    }
+    .cajaregistrar label {
+        margin-top: 5.5vw;
+    }
+    .cajaregistrar input {
+        border-radius: 15px;
+        width: 73%;
+        height: 10vw;
+        margin-top: 0.5vw;
+    }
+    .custom-btn {
+        margin-top: 5.5vw;
+        margin-bottom: 5vw;
+        width: 70%;
+        height: 10vw;
+        font-size: 3.8vw;
+    }
+}
+/* ----------- */
+.establecimientos {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    flex-wrap: nowrap;
+}
+.restaurantes {
+    width: 090%;
+    height: 200px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 0px 13px -4px #000000;
+    -moz-box-shadow: 0px 0px 13px -4px #000000;
+    -webkit-box-shadow: 0px 0px 13px -4px #000000;
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    top: 100vh;
+}
+.texto{
+    width: 50%;
+    margin: 50px;
+}
+.valoracion{
+    width: 20%;
+}
+.foto img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.restaurantes input {
+    width: 200px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #242D2F;
+    color: #EF8633;
+}
+
+.restaurantes button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #EF8633;
+    color: #EF8633;
+    background-color: white;
+}
+
+.restaurantes button:hover {
+    color: white;
+    background-color: #EF8633;
+    transition: all 0.4s;
+}
+/* ------------------------------------------ */
+/* ------------------FOOTER------------------ */
+/* ------------------------------------------ */
+.footer {
+    margin: 3em 0 0;
+    padding: 8vh 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    background-color: #efedea;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  .footer__center {
+    width: 80%;
+    max-width: 55em;
+  }
+  .footer__fila {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+  }
+  .footer__ul {
+    margin: 0 0 2em;
+    font-size: 0.8em;
+  }
+  .footer__li {
+    margin: 0 0 1.4em;
+  }
+  .footer__a {
+    color: rgba(0, 0, 0, 0.836) ;
+  }
+/* ------------------------------------------ */
+/* --------------RESPONSIVE------------------ */
+/* ------------------------------------------ */
+@media screen and (max-width: 700px) {
+    .footer__ul {
+      width: calc( 100% / 2 );
+    }
+}
+@media screen and (max-width: 840px) {
+    .login h2 {
+        font-size: 25px;
+    }
+    .login h3 {
+        font-size: 15px;
+    }
+    .login input {
+        width: 50%;
+        height: 50px;
+        padding: 10px;
+        border-radius: 15px;
+        margin-top: 2.5%;
+        margin-bottom: 2.5%;
+        border: 1px solid #000000a1;
+        color: #f36805;
+        margin-left: 25%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .login {
+        width: 80%;
+        height: 50vh;
+        background-color: white;
+        border-radius: 15px;
+        position: relative;
+        top: 35%;
+        box-shadow: 0px 0px 13px -4px #00000083;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .textoCentrado {
+        margin-top: 2%;
+        float: left;
+        width: 50%;
+        align-items: center;
+        text-align: left;
+        justify-content: center;
+        font-size: 10px;
+        padding: 45px 15px 0px 0px;
+    }
+    .imagenCentrada img {
+        padding: 2%;
+        width: 35%;
+        float: left;
+    }
+}
+/* ------------------------------------------ */
+/* --------------HASTA AQUI------------------ */
+/* ------------------------------------------ */
+/* ------------------------------------------ */
+/* --------------LOS ESTILOS----------------- */
+/* ------------------------------------------ */
+/* ------------------------------------------ */
+/* --------------DEL LOGIN------------------- */
+/* ------------------------------------------ */
