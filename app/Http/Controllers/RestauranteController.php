@@ -84,11 +84,45 @@ class RestauranteController extends Controller{
         $id = $request->input('id');
         try {
             Restaurante::find($id)->delete();
-            return response()->json(['Resultado' => 'OK']);
+            return response()->json(['Resultado' => "OK"]);
         } catch (\Throwable $e) {
             return response()->json(['Resultado' => 'Error, algo ha ido mal']);
         }
     }
-}
 
+
+    public function crearRestaurante(Request $request){
+        $restaurante = $request->except('_token');
+        $id = Db::table('restaurantes')->insertGetId(['nombre_restaurante' => $restaurante['nombre_restaurante'],'tipo_comida' => $restaurante['tipo_comida'],'email_restaurante' => $restaurante['email_restaurante'],'descripcion_restaurante' => $restaurante['descripcion_restaurante'],'imagen_restaurante' => $restaurante['imagen_restaurante']]);
+
+        if($request->hasFile("imagen_restaurante")){ 
+
+            $request->file('imagen_restaurante')->storeAs('uploads', $id.'.png', 'public');
+
+            Db::table('restaurantes')->where('id_restaurante', $id)->update(['imagen_restaurante' => $id.'.png']);
+        }  
+
+        return response()->json(['Resultado' => 'OK']);
+        
+    }
+     
+    public function editarRestaurante(Request $request){
+        $id = $request->input('id_restaurante');
+        $restaurante = Restaurante::find($id);
+        return response()->json($restaurante);
+    }
+
+    public function actualizarRestaurante(Request $request, $id){
+        $restaurante = Restaurante::findOrFail($id);
+        $restaurante->nombre_restaurante = $request->nombre_restaurante;
+        $imagen = $request->file('imagen_restaurante');
+        if ($imagen) {
+            $nombre_imagen = time().'.'.$imagen->extension();
+            $imagen->move(public_path('img/restaurantes'),$nombre_imagen);
+            $restaurante->imagen_restaurante = $nombre_imagen;
+        }
+        $restaurante->update();
+        return response()->json(['Resultado' => 'OK']);
+}
+}
 
