@@ -10,7 +10,8 @@ class CreateCocinasTable extends Migration{
         Schema::create('cocinas', function (Blueprint $table) {
             $table->increments('id_cocina');
             $table->integer('tipo_comida');
-        });  
+            $table->string('imagen_tipo_comida', 255);
+        });
     }
     public function down(){
         Schema::dropIfExists('cocinas');
