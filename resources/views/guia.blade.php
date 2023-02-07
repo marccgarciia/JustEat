@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="{!! asset('../resources/css/app.css') !!}">
     <!-- TOKEN -->
     <meta name="delete" content="{{ csrf_token() }}" id="token">
-    <!-- SWA -->
-    
+
 </head>
 <body>
 <div class="navbar">
@@ -34,6 +33,35 @@ $admin = session()->get('is_admin');
 if($admin == 1){
 ?>
     <!--PARTE ADMINISTRADR -->
+    <div class="formularioCrear">
+  <!-- FOTO -->
+  <img class="imgRestaurante" src="{{ asset('img/logo_res.png') }}" alt="">
+  <!-- FORMULARIO -->
+  <form action="" class="formAdminCrear" method="POST" id="frm" enctype="multipart/form-data">
+    @csrf   
+    <input type="hidden" name="id" id="id" value="">
+      <div class="form-group-container">
+        <div class="form-group">
+          <input type="text" name="nombre_restaurante" id="nombre_restaurante" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+          <input type="text" name="tipo_comida" id="tipo_comida" placeholder="Tipo">
+        </div>
+        <div class="form-group">
+          <input type="text" name="email_restaurante" id="email_restaurante" placeholder="Correo">
+        </div>
+        <div class="form-group">
+          <input type="text" name="descripcion_restaurante" id="descripcion_restaurante" placeholder="Descripción">
+        </div>
+        <div class="form-group">
+          <input type="file" name="imagen_restaurante" id="imagen_restaurante">
+        </div>
+        <div class="form-group">
+          <button class="header__login" id="registrar" type="submit">Crear</button>
+        </div>
+      </div>
+  </form>
+</div>
         <div class="filtro">
             <form class="formAdmin"action="" method="post" id="frmbusqueda">
                 <input type="text" name="buscar" id="buscar" placeholder="Buscar..."> 
@@ -49,7 +77,6 @@ if($admin == 1){
                     <th class="th-padding">Tipo Comida</th>
                     <th class="th-padding">Email</th>
                     <th class="th-padding">Descripción</th>
-                    <th class="th-padding">Correo</th>
                     <th class="th-padding">Editar</th>
                     <th class="th-padding">Eliminar</th>
                     </tr>
@@ -130,6 +157,6 @@ if($admin == 1){
 }
 ?>
 <script src="{{asset('scriptadmin.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10%22%3E"></script>
+
 </body>
 </html>
