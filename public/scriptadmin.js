@@ -13,11 +13,8 @@ function listarRestaurantesAdmin(filtro){
             let box = '';
             restaurantes.forEach(element =>{
                 box += `<tr>
-                <td class="th-padding">${element.id_restaurante} </td>
+                <td class="th-padding"> <img style="width:200px;height:100px" src="storage/uploads/${element.id_restaurante}.png" alt="Logo"></td>
                 <td class="th-padding">${element.nombre_restaurante}</td>
-                
-                <td class="th-padding <img src="{{asset('storage/uploads/'.${element.imagen_restaurante}) }}" alt="Logo"></td>
-
                 <td class="th-padding">${element.tipo_comida}</td>
                 <td class="th-padding">${element.email_restaurante}</td>
                 <td class="th-padding">${element.descripcion_restaurante}</td>
@@ -80,6 +77,7 @@ registrar.addEventListener("click", (event) => {
 
     if (id.value !== '') {
         ajax.open('PUT', 'actualizarRestaurante' + id.value);
+        
     } else {
         ajax.open('POST', 'crearRestaurante');
     }
@@ -88,6 +86,12 @@ registrar.addEventListener("click", (event) => {
         if(ajax.status === 200){
             respuesta = JSON.parse(ajax.responseText);//
             if (respuesta == "OK") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registro Creado',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 form.reset();
                 listarRestaurantesAdmin('');
             } else{
@@ -102,11 +106,66 @@ registrar.addEventListener("click", (event) => {
     }
     ajax.send(formdata);
 });
+
+
+
+
+// registrar.addEventListener("click", () => {
+
+
+//     var form = document.getElementById('frm');
+        
+//     var formdata = new FormData(form);
+//     formdata.append('_token',csrf_token);
+//     // if (accion == 'actualizar') {
+//     //     formdata.append('_method','put');
+//     // }
+
+//     var ajax = new XMLHttpRequest();
+
+//     ajax.open('POST', 'crearRestaurante');
+//         ajax.onload=function (){
+//             // let respuesta = "Mal";
+            
+//             if(ajax.status==200){
+//                 respuesta = JSON.parse(ajax.responseText);
+                 
+//                 if (respuesta == "OK") {
+//                     listar('');
+//                     form.reset();
+//                     Swal.fire({
+//                         icon: 'success',
+//                         title: 'Registrado',
+//                         showConfirmButton: false,
+//                         timer: 1500
+//                     });
+                    
+//                 } else {  
+//                     // alert(respuesta);
+//                         Swal.fire({
+//                             icon: 'success',
+//                             title: 'Modificado',
+//                             showConfirmButton: false,
+//                             timer: 1500
+//                         });
+//                         registrar.value = "registrar";
+//                         id.value = "";
+//                         listar('');
+//                         form.reset();
+//                     }
+//             } else {
+//                 alert(respuesta);
+//             }
+//         }
+//         ajax.send(formdata);
+        
+
+// });
 /* EDITAR */
  function Editar(id) {
     var formdata = new FormData();
     formdata.append('_token',csrf_token);
-    formdata.append('id', id);
+    formdata.append('id_restaurante', id);
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'editarRestaurante');
     ajax.onload=function (){

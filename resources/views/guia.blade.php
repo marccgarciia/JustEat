@@ -57,7 +57,7 @@ if($admin == 1){
           <input type="file" name="imagen_restaurante" id="imagen_restaurante">
         </div>
         <div class="form-group">
-          <button class="header__login" id="registrar" type="submit">Crear</button>
+          <input class="header__login" id="registrar" type="button" value="Crear">Crear</input>
         </div>
       </div>
   </form>
@@ -71,9 +71,10 @@ if($admin == 1){
             <table class="div-table " style="margin-bottom: 5%;">
                 <thead>
                     <tr>
-                    <th class="th-padding">Id</th>
-                    <th class="th-padding">Nombre</th>
+                    <!-- <th class="th-padding">Id</th> -->
                     <th class="th-padding">Imagen </th>
+                    <th class="th-padding">Nombre</th>
+                    
                     <th class="th-padding">Tipo Comida</th>
                     <th class="th-padding">Email</th>
                     <th class="th-padding">Descripción</th>

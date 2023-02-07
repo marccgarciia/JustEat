@@ -107,14 +107,21 @@ class RestauranteController extends Controller{
     }
      
     public function editarRestaurante(Request $request){
+        // $request->except('_token');
         $id = $request->input('id_restaurante');
         $restaurante = Restaurante::find($id);
         return response()->json($restaurante);
     }
 
     public function actualizarRestaurante(Request $request, $id){
+        
         $restaurante = Restaurante::findOrFail($id);
         $restaurante->nombre_restaurante = $request->nombre_restaurante;
+        $restaurante->tipo_comida = $request->tipo_comida;
+        $restaurante->email_restaurante = $request->email_restaurante;
+        $restaurante->descripcion_restaurante = $request->descripcion_restaurante;
+        // $restaurante->imagen_restaurante = $request->imagen_restaurante;
+
         $imagen = $request->file('imagen_restaurante');
         if ($imagen) {
             $nombre_imagen = time().'.'.$imagen->extension();
