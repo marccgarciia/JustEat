@@ -98,7 +98,7 @@
         <div class="box flex">
             @foreach ($data as $restaurantes)
             <form action="">
-                <img src="{{ asset('./imagenes comida/'.$restaurantes->imagen_tipo_comida) }}">
+                <img src="{{ asset('./img/'.$restaurantes->imagen_tipo_comida) }}">
                 <h4 style="text-align:center; margin-top:4%">{{$restaurantes->tipo_comida}}</h4>
             </form>
             @endforeach
@@ -116,32 +116,27 @@
     </div>
     
 
-
-
-    <!-- <div class="buscar">
-                    <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
-                    <label for="valoracion">Valoración:</label>
-                    <select name="valoracion" id="valoracion">
-                        <option value="1">1 Estrella</option>
-                        <option value="2">2 Estrellas</option>
-                        <option value="3">3 Estrellas</option>
-                        <option value="4">4 Estrellas</option>
-                        <option value="5" selected>5 Estrellas</option>
-                    </select>
-                </div> -->
     <!-- RESTAURANTE -->
- 
 
-
-
-
-
-
-
-
-
-
-    <div class="establecimientos" >
+    <div class="establecimientos" id="establecimientos">
+        <div class="restaurantes">
+            <div class="foto">
+                <img src="foto.jpg" alt="foto">
+            </div>
+            <div class="texto">
+                <h1>Telepizza</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
+            </div>
+            <div class="valoracion">
+                <h3>VALORACIÓN</h3>
+                <div class="estrellas-val">
+                    <div class="val" id="file2">
+                        <img src="{{ asset('img/estrellas-valorar.png') }}" alt="Logo">
+                    </div>
+                    <progress id="file" max="5" value="3"></progress>
+                </div>
+            </div>
+        </div>
         <div class="restaurantes" id="restaurante">
             <div class="foto">
                 <img src="foto.jpg" alt="foto">
@@ -153,16 +148,15 @@
             <div class="valoracion">
                 <h3>VALORACIÓN</h3>
                 <div class="estrellas-val">
-        <div class="val" id="file2">
-        <img src="{{ asset('imagenes comida/estrellas-valorar.png') }}" alt="Logo">
-        </div>
-
-        <progress id="file" max="5" value="3"></progress>
-    </div>
-    
+                    <div class="val" id="file2">
+                        <img src="{{ asset('img/estrellas-valorar.png') }}" alt="Logo">
+                    </div>
+                    <progress id="file" max="5" value="2"></progress>
+                </div>
             </div>
         </div>
     </div>
+   
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer__center">

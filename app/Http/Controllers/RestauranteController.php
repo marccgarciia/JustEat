@@ -11,16 +11,23 @@ class RestauranteController extends Controller{
     /*------VISTAS----- */
     /* INDEX */
     public function index(){
-        return view('index');
+        return view('/index');
     }
+    public function login(){
+        return view('login');
+    }
+    
     /* REGISTER */
     public function register(){
-        return view('register');
+       return view('register'); 
     }
     /* GUIA DE RESTAURANTES */
     public function guia(){
-        $data=DB::table('cocinas')->get();
+       
+            $data=DB::table('cocinas')->get();
         return view('guia',compact('data'));
+    
+        
     }
     /* REGISTERPOST */
     public function registerpost(Request $request){

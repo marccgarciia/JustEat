@@ -19,7 +19,7 @@
         <div class="navbar">
             <div class="logo">
                 <!-- <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo"> -->
-                <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
+                <a href="{{url('/')}}"><img src="{{ asset('img/justEatLogo.png') }}" alt="Logo"></a> 
             </div>
         </div>
         <div class="containerregistrar flex">

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 //INDEX
 Route::get('/', [RestauranteController::class, 'index']);
+//LOGIN
+Route::get('/login', [RestauranteController::class, 'login']);
 //REGISTER
 Route::get('/register', [RestauranteController::class, 'register']);
 //GUIA DE RESTAURANTES
@@ -22,4 +24,4 @@ Route::get('/logoutpost',[RestauranteController::class, 'logoutpost']);
 
 Route::post('/crearRestaurante',[RestauranteController::class, 'crearRestaurante']);
 Route::post('/editarRestaurante',[RestauranteController::class, 'editarRestaurante']);
-Route::put('/actualizarRestaurante/{id}',[RestauranteController::class, 'actualizarRestaurante']);//
+Route::post('/actualizarRestaurante/{id}',[RestauranteController::class, 'actualizarRestaurante']);
