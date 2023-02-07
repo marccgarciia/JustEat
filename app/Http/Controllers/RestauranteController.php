@@ -19,7 +19,8 @@ class RestauranteController extends Controller{
     }
     /* GUIA DE RESTAURANTES */
     public function guia(){
-        return view('guia');
+        $data=DB::table('cocinas')->get();
+        return view('guia',compact('data'));
     }
     /* REGISTERPOST */
     public function registerpost(Request $request){

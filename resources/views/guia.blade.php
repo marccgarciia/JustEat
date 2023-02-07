@@ -91,7 +91,31 @@ if($admin == 1){
 }else{
     ?>  
     <!-- PARTE USUARIO -->
-    <div class="buscar">
+    <div class="cajafiltro">
+        <div class="box flex">
+            @foreach ($data as $restaurantes)
+            <form action="">
+                <img src="{{ asset('./imagenes comida/'.$restaurantes->imagen_tipo_comida) }}">
+                <h4 style="text-align:center; margin-top:4%">{{$restaurantes->tipo_comida}}</h4>
+            </form>
+            @endforeach
+        </div>
+    </div>
+
+   
+    <div class="wrap">
+                    <div class="search">
+                       <input type="text" class="searchTerm" placeholder="Buscar restaurante...">
+                       <button type="submit" class="searchButton">
+                         <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+    </div>
+    
+
+
+
+    <!-- <div class="buscar">
                     <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
                     <label for="valoracion">Valoración:</label>
                     <select name="valoracion" id="valoracion">
@@ -101,8 +125,19 @@ if($admin == 1){
                         <option value="4">4 Estrellas</option>
                         <option value="5" selected>5 Estrellas</option>
                     </select>
-                </div>
+                </div> -->
     <!-- RESTAURANTE -->
+ 
+
+
+
+
+
+
+
+
+
+
     <div class="establecimientos" >
         <div class="restaurantes" id="restaurante">
             <div class="foto">
@@ -114,7 +149,14 @@ if($admin == 1){
             </div>
             <div class="valoracion">
                 <h3>VALORACIÓN</h3>
-                <p>5 Estrellas</p>
+                <div class="estrellas-val">
+        <div class="val" id="file2">
+        <img src="{{ asset('imagenes comida/estrellas-valorar.png') }}" alt="Logo">
+        </div>
+
+        <progress id="file" max="5" value="3"></progress>
+    </div>
+    
             </div>
         </div>
     </div>
