@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,65 +16,67 @@
     <link rel="stylesheet" href="{!! asset('../resources/css/app.css') !!}">
     <!-- TOKEN -->
     <meta name="delete" content="{{ csrf_token() }}" id="token">
-
+    <!-- SWA -->
+    
 </head>
+
 <body>
-<div class="navbar">
-    <div class="logo">
-        <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
+        </div>
+        <div class="usuario">
+            <a href="{{url('/logoutpost')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
     </div>
-    <div class="usuario">
-        <a href="perfil"><i class="fa-solid fa-circle-user"></i></a>
-        <a href="{{url('/logoutpost')}}" ><i class="fa-solid fa-arrow-right-from-bracket"></i></a> 
-    </div>
-</div>
-<?php
-$email = session()->get('email_user');
-$admin = session()->get('is_admin');
-if($admin == 1){
-?>
-    <!--PARTE ADMINISTRADR -->
-    <div class="formularioCrear">
-  <!-- FOTO -->
-  <img class="imgRestaurante" src="{{ asset('img/logo_res.png') }}" alt="">
-  <!-- FORMULARIO -->
-  <form action="" class="formAdminCrear" method="POST" id="frm" enctype="multipart/form-data">
-    @csrf   
-    <input type="hidden" name="id" id="id" value="">
-      <div class="form-group-container">
-        <div class="form-group">
-          <input type="text" name="nombre_restaurante" id="nombre_restaurante" placeholder="Nombre">
+    <?php
+    $email = session()->get('email_user');
+    $admin = session()->get('is_admin');
+    if ($admin == 1) {
+    ?>
+        <!--PARTE ADMINISTRADR -->
+        <div class="formularioCrear">
+            <!-- FOTO -->
+            <img class="imgRestaurante" src="{{ asset('img/logo_res.png') }}" alt="">
+            <!-- FORMULARIO -->
+            <form action="" class="formAdminCrear" method="POST" id="frm" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" id="id" value="">
+                <div class="form-group-container">
+                    <div class="form-group">
+                        <input type="text" name="nombre_restaurante" id="nombre_restaurante" placeholder="Nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="tipo_comida" id="tipo_comida" placeholder="Tipo">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="email_restaurante" id="email_restaurante" placeholder="Correo">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="descripcion_restaurante" id="descripcion_restaurante" placeholder="Descripción">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="imagen_restaurante" id="imagen_restaurante">
+                    </div>
+                    <div class="form-group">
+                        <input class="header__login" id="registrar" type="submit">Crear</input>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="form-group">
-          <input type="text" name="tipo_comida" id="tipo_comida" placeholder="Tipo">
-        </div>
-        <div class="form-group">
-          <input type="text" name="email_restaurante" id="email_restaurante" placeholder="Correo">
-        </div>
-        <div class="form-group">
-          <input type="text" name="descripcion_restaurante" id="descripcion_restaurante" placeholder="Descripción">
-        </div>
-        <div class="form-group">
-          <input type="file" name="imagen_restaurante" id="imagen_restaurante">
-        </div>
-        <div class="form-group">
-          <button class="header__login" id="registrar" type="submit">Crear</button>
-        </div>
-      </div>
-  </form>
-</div>
         <div class="filtro">
-            <form class="formAdmin"action="" method="post" id="frmbusqueda">
-                <input type="text" name="buscar" id="buscar" placeholder="Buscar..."> 
-            </form> 
+            <form class="formAdmin" action="" method="post" id="frmbusqueda">
+                <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
+            </form>
         </div>
         <div class="main-container">
             <table class="div-table " style="margin-bottom: 5%;">
                 <thead>
                     <tr>
-                    <th class="th-padding">Id</th>
-                    <th class="th-padding">Nombre</th>
+                    <!-- <th class="th-padding">Id</th> -->
                     <th class="th-padding">Imagen </th>
+                    <th class="th-padding">Nombre</th>
+                    
                     <th class="th-padding">Tipo Comida</th>
                     <th class="th-padding">Email</th>
                     <th class="th-padding">Descripción</th>
@@ -83,39 +86,33 @@ if($admin == 1){
                 </thead>
                 <tbody id='resultado'>
                     <!-- CONTENIDO TABLA -->
-                 </tbody>
+                </tbody>
             </table>
          </div>
 <?php
 }else{
     ?>  
     <!-- PARTE USUARIO -->
-    <div class="buscar">
-                    <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
-                    <label for="valoracion">Valoración:</label>
-                    <select name="valoracion" id="valoracion">
-                        <option value="1">1 Estrella</option>
-                        <option value="2">2 Estrellas</option>
-                        <option value="3">3 Estrellas</option>
-                        <option value="4">4 Estrellas</option>
-                        <option value="5" selected>5 Estrellas</option>
-                    </select>
-                </div>
-    <!-- RESTAURANTE -->
-    <div class="establecimientos" >
-        <div class="restaurantes" id="restaurante">
-            <div class="foto">
-                <img src="foto.jpg" alt="foto">
-            </div>
-            <div class="texto">
-                <h1>Telepizza</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
-            </div>
-            <div class="valoracion">
-                <h3>VALORACIÓN</h3>
-                <p>5 Estrellas</p>
-            </div>
+    <div class="cajafiltro">
+        <div class="box flex">
+            @foreach ($data as $restaurantes)
+            <form action="">
+                <img src="{{ asset('./img/'.$restaurantes->imagen_tipo_comida) }}">
+                <h4 style="text-align:center; margin-top:4%">{{$restaurantes->tipo_comida}}</h4>
+            </form>
+            @endforeach
         </div>
+    </div>
+    <div class="wrap">
+                    <div class="search">
+                       <input type="text" class="searchTerm" placeholder="Buscar restaurante...">
+                       <button type="submit" class="searchButton">
+                         <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+    </div>
+    <div id="establecimientos"class="establecimientos" >
+        <!-- CONTENIDO -->
     </div>
     <!-- FOOTER -->
     <footer class="footer">
@@ -154,9 +151,9 @@ if($admin == 1){
         </div>
     </footer>
     <?php
-}
-?>
-<script src="{{asset('scriptadmin.js')}}"></script>
-
+    }
+    ?>
+<script src="{{asset('scriptAdmin.js')}}"></script>
 </body>
+
 </html>

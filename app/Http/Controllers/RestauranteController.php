@@ -11,7 +11,11 @@ class RestauranteController extends Controller{
     /*------VISTAS----- */
     /* INDEX */
     public function index(){
-        return view('index');
+        return view('/index');
+    }
+    /* LOGIN */
+    public function login(){
+        return view('login');
     }
     /* REGISTER */
     public function register(){
@@ -19,7 +23,8 @@ class RestauranteController extends Controller{
     }
     /* GUIA DE RESTAURANTES */
     public function guia(){
-        return view('guia');
+        $data=DB::table('cocinas')->get();
+        return view('guia',compact('data'));
     }
     /* REGISTERPOST */
     public function registerpost(Request $request){
@@ -79,6 +84,18 @@ class RestauranteController extends Controller{
             return response()->json($resu2);
         }
     }
+    /* LISTAR ESTABLECIMIENTOS */
+    public function listarRestaurantes(Request $request){
+        $buscar = $request->input('buscar');
+        if(empty($buscar)) {
+            $resu1 = DB::select(DB::raw("SELECT * FROM restaurantes"));
+            return response()->json($resu1);
+        } else {
+            $resu2 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE (nombre_restaurante LIKE '%".$buscar."%')"));
+            return response()->json($resu2);
+        }
+    }
+
     /* ELIMINAR RESTAURANTE */
     public function eliminarRestaurante(Request $request) {
         $id = $request->input('id');
@@ -107,18 +124,25 @@ class RestauranteController extends Controller{
     }
      
     public function editarRestaurante(Request $request){
+        // $request->except('_token');
         $id = $request->input('id_restaurante');
         $restaurante = Restaurante::find($id);
         return response()->json($restaurante);
     }
 
     public function actualizarRestaurante(Request $request, $id){
+        
         $restaurante = Restaurante::findOrFail($id);
         $restaurante->nombre_restaurante = $request->nombre_restaurante;
+        $restaurante->tipo_comida = $request->tipo_comida;
+        $restaurante->email_restaurante = $request->email_restaurante;
+        $restaurante->descripcion_restaurante = $request->descripcion_restaurante;
+        // $restaurante->imagen_restaurante = $request->imagen_restaurante;
+
         $imagen = $request->file('imagen_restaurante');
         if ($imagen) {
             $nombre_imagen = time().'.'.$imagen->extension();
-            $imagen->move(public_path('img/restaurantes'),$nombre_imagen);
+            $imagen->move(public_path('/storage/uploads'),$nombre_imagen);
             $restaurante->imagen_restaurante = $nombre_imagen;
         }
         $restaurante->update();

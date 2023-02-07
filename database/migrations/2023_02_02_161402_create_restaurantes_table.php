@@ -10,7 +10,7 @@ class CreateRestaurantesTable extends Migration{
         Schema::create('restaurantes', function (Blueprint $table) {
             $table->increments('id_restaurante');
             $table->string('nombre_restaurante', 20);
-            $table->string('imagen_restaurante', 20);
+            $table->string('imagen_restaurante', 255);
             $table->integer('tipo_comida');
             $table->decimal('media', 10, 1);
             $table->string('email_restaurante', 50);
