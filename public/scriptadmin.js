@@ -15,6 +15,12 @@ function listarRestaurantesAdmin(filtro){
                 box += `<tr>
                 <td class="th-padding"> <img style="width:200px;height:100px" src="storage/uploads/${element.id_restaurante}.png" alt="Logo"></td>
                 <td class="th-padding">${element.nombre_restaurante}</td>
+<<<<<<< HEAD
+                
+                <td class="th-padding <img src="{{asset('storage/uploads/'.${element.imagen_restaurante}) }}" alt="Logo"></td>
+
+=======
+>>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
                 <td class="th-padding">${element.tipo_comida}</td>
                 <td class="th-padding">${element.email_restaurante}</td>
                 <td class="th-padding">${element.descripcion_restaurante}</td>
@@ -77,7 +83,10 @@ registrar.addEventListener("click", (event) => {
 
     if (id.value !== '') {
         ajax.open('PUT', 'actualizarRestaurante' + id.value);
+<<<<<<< HEAD
+=======
         
+>>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
     } else {
         ajax.open('POST', 'crearRestaurante');
     }
@@ -86,12 +95,15 @@ registrar.addEventListener("click", (event) => {
         if(ajax.status === 200){
             respuesta = JSON.parse(ajax.responseText);//
             if (respuesta == "OK") {
+<<<<<<< HEAD
+=======
                 Swal.fire({
                     icon: 'success',
                     title: 'Registro Creado',
                     showConfirmButton: false,
                     timer: 1500
                 });
+>>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
                 form.reset();
                 listarRestaurantesAdmin('');
             } else{
@@ -106,6 +118,8 @@ registrar.addEventListener("click", (event) => {
     }
     ajax.send(formdata);
 });
+<<<<<<< HEAD
+=======
 
 
 
@@ -161,11 +175,16 @@ registrar.addEventListener("click", (event) => {
         
 
 // });
+>>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
 /* EDITAR */
  function Editar(id) {
     var formdata = new FormData();
     formdata.append('_token',csrf_token);
+<<<<<<< HEAD
+    formdata.append('id', id);
+=======
     formdata.append('id_restaurante', id);
+>>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
     var ajax = new XMLHttpRequest();
     ajax.open('POST', 'editarRestaurante');
     ajax.onload=function (){
