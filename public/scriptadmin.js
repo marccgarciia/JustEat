@@ -16,12 +16,11 @@ function listarRestaurantesAdmin(filtro){
                 <td class="th-padding">${element.id_restaurante} </td>
                 <td class="th-padding">${element.nombre_restaurante}</td>
                 
-                <td class="th-padding <img src="{{ asset('img/adomicilio.png') }}" alt="Logo"></td>
+                <td class="th-padding <img src="{{asset('storage/uploads/'.${element.imagen_restaurante}) }}" alt="Logo"></td>
 
                 <td class="th-padding">${element.tipo_comida}</td>
                 <td class="th-padding">${element.email_restaurante}</td>
                 <td class="th-padding">${element.descripcion_restaurante}</td>
-                <td class="th-padding"><button type='button' class='btn btn-outline-success' onclick=Correo('${element.id_restaurante}')><i class="fa-solid fa-envelope"></i></button></td>
                 <td class="th-padding"><button type='button' class='btn btn-outline-primary' onclick=Editar('${element.id_restaurante}')><i class="fa-solid fa-pen-to-square"></i></button></td>
                 <td class="th-padding"><button type='button' class='btn btn-outline-danger' onclick=Eliminar('${element.id_restaurante}')><i class="fa-solid fa-trash"></i></button></td>
             </tr>`;
@@ -67,5 +66,60 @@ function Eliminar(id){
             }
         }
     };
+    ajax.send(formdata);
+}
+
+
+/* REGISTRAR O ACTUALIZAR */
+registrar.addEventListener("click", (event) => {
+    event.preventDefault();
+    var form = document.getElementById('frm');  
+    var formdata = new FormData(form);
+    formdata.append('_token',csrf_token);
+    var ajax = new XMLHttpRequest();
+
+    if (id.value !== '') {
+        ajax.open('PUT', 'actualizarRestaurante' + id.value);
+    } else {
+        ajax.open('POST', 'crearRestaurante');
+    }
+
+    ajax.onload=function (){
+        if(ajax.status === 200){
+            respuesta = JSON.parse(ajax.responseText);//
+            if (respuesta == "OK") {
+                form.reset();
+                listarRestaurantesAdmin('');
+            } else{
+                registrar.value = "Registrar";
+                id.value = "";
+                form.reset();
+                listarRestaurantesAdmin('');
+                } 
+        } else {
+            respuesta.innerText = 'Error';
+        }
+    }
+    ajax.send(formdata);
+});
+/* EDITAR */
+ function Editar(id) {
+    var formdata = new FormData();
+    formdata.append('_token',csrf_token);
+    formdata.append('id', id);
+    var ajax = new XMLHttpRequest();
+    ajax.open('POST', 'editarRestaurante');
+    ajax.onload=function (){
+        if(ajax.status==200){
+                var json=JSON.parse(ajax.responseText);
+                document.getElementById('id').value = json.id_restaurante;
+                document.getElementById('nombre_restaurante').value = json.nombre_restaurante;
+                document.getElementById('imagen_restaurante').file = json.imagen_restaurante;
+                document.getElementById('tipo_comida').value = json.tipo_comida;
+                document.getElementById('email_restaurante').value = json.email_restaurante;
+                document.getElementById('descripcion_restaurante').value = json.descripcion_restaurante;
+                document.getElementById('registrar').value = "actualizar"
+            }
+        }
     ajax.send(formdata);
 }

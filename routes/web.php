@@ -19,3 +19,7 @@ Route::delete('/eliminarRestaurante',[RestauranteController::class, 'eliminarRes
 Route::post('/loginpost',[RestauranteController::class, 'loginpost']);
 Route::post('/registerpost',[RestauranteController::class, 'registerpost']);
 Route::get('/logoutpost',[RestauranteController::class, 'logoutpost']);
+
+Route::post('/crearRestaurante',[RestauranteController::class, 'crearRestaurante']);
+Route::post('/editarRestaurante',[RestauranteController::class, 'editarRestaurante']);
+Route::put('/actualizarRestaurante/{id}',[RestauranteController::class, 'actualizarRestaurante']);//
