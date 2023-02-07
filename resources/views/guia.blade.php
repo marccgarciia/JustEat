@@ -130,18 +130,11 @@ if($admin == 1){
  
 
 
-
-
-
-
-
-
-
-
     <div class="establecimientos" >
         <div class="restaurantes" id="restaurante">
             <div class="foto">
-                <img src="foto.jpg" alt="foto">
+                @foreach ($data as $restaurante)
+                <img src="{{ asset('./storage/uploads/'.$restaurante->imagen_restaurante) }}">
             </div>
             <div class="texto">
                 <h1>Telepizza</h1>
@@ -149,17 +142,20 @@ if($admin == 1){
             </div>
             <div class="valoracion">
                 <h3>VALORACIÓN</h3>
-                <div class="estrellas-val">
+                <p>Media: 5</p>
+    
+            </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- <div class="estrellas-val">
         <div class="val" id="file2">
         <img src="{{ asset('imagenes comida/estrellas-valorar.png') }}" alt="Logo">
         </div>
 
         <progress id="file" max="5" value="3"></progress>
-    </div>
-    
-            </div>
-        </div>
-    </div>
+    </div> -->
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer__center">
