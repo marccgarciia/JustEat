@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="{!! asset('../resources/css/app.css') !!}">
     <!-- TOKEN -->
     <meta name="delete" content="{{ csrf_token() }}" id="token">
-
+    <!-- SWA -->
+    
 </head>
 
 <body>
@@ -73,14 +74,15 @@
             <table class="div-table " style="margin-bottom: 5%;">
                 <thead>
                     <tr>
-                        <th class="th-padding">Id</th>
-                        <th class="th-padding">Nombre</th>
-                        <th class="th-padding">Imagen </th>
-                        <th class="th-padding">Tipo Comida</th>
-                        <th class="th-padding">Email</th>
-                        <th class="th-padding">Descripción</th>
-                        <th class="th-padding">Editar</th>
-                        <th class="th-padding">Eliminar</th>
+                    <!-- <th class="th-padding">Id</th> -->
+                    <th class="th-padding">Imagen </th>
+                    <th class="th-padding">Nombre</th>
+                    
+                    <th class="th-padding">Tipo Comida</th>
+                    <th class="th-padding">Email</th>
+                    <th class="th-padding">Descripción</th>
+                    <th class="th-padding">Editar</th>
+                    <th class="th-padding">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody id='resultado'>

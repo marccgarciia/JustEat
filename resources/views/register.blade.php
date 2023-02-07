@@ -25,22 +25,23 @@
         <div class="containerregistrar flex">
 
             <div class="cajaregistrar flex">
-                <form  action="{{url('registerpost')}}" method="POST" class="flex">
+                <form  action="{{url('/registerpost')}}" method="POST" class="flex">
+                @csrf  
                 <img src="{{ asset('img/adomicilio.png') }}" alt="Logo">
                 <h6><b>Crear cuenta</b></h6>
                 <a href="">¿Ya formas parte de Just Eat?</a>
 
                 <label for="nombre"><b>Nombre</b></label>
-                <input type="text">
+                <input type="text" id="nombre_user" name="nombre_user">
 
-                <label for="apellido"><b>Apellido</b></label>
-                <input type="text">
+                <!-- <label for="apellido"><b>Apellido</b></label>
+                <input type="text"> -->
 
                 <label for="correo"><b>Correo electrónico</b></label>
-                <input type="text">
+                <input type="text"  id="email_user" name="email_user">
 
                 <label for="contrasena"><b>Contraseña</b></label>
-                <input type="password">
+                <input type="password"  id="password_user" name="password_user">
 
                 <button class="custom-btn btn-1">Crear cuenta</button>
                 </form>
@@ -50,7 +51,3 @@
 </body>
 
 </html>
-
-<!-- <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo"> -->
-<!-- <img src="{{ asset('img/adomicilio.png') }}" alt="Logo"> -->
-<!-- <form  action="{{url('registerpost')}}" method="POST" class="flex"></form> -->
