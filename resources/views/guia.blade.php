@@ -89,74 +89,116 @@
                     <!-- CONTENIDO TABLA -->
                 </tbody>
             </table>
+         </div>
+<?php
+}else{
+    ?>  
+    <!-- PARTE USUARIO -->
+    <div class="cajafiltro">
+        <div class="box flex">
+            @foreach ($data as $restaurantes)
+            <form action="">
+                <img src="{{ asset('./imagenes comida/'.$restaurantes->imagen_tipo_comida) }}">
+                <h4 style="text-align:center; margin-top:4%">{{$restaurantes->tipo_comida}}</h4>
+            </form>
+            @endforeach
         </div>
-    <?php
-    } else {
-    ?>
-        <!-- PARTE USUARIO -->
-        <div class="buscar">
-            <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
-            <label for="valoracion">Valoración:</label>
-            <select name="valoracion" id="valoracion">
-                <option value="1">1 Estrella</option>
-                <option value="2">2 Estrellas</option>
-                <option value="3">3 Estrellas</option>
-                <option value="4">4 Estrellas</option>
-                <option value="5" selected>5 Estrellas</option>
-            </select>
+    </div>
+
+   
+    <div class="wrap">
+                    <div class="search">
+                       <input type="text" class="searchTerm" placeholder="Buscar restaurante...">
+                       <button type="submit" class="searchButton">
+                         <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+    </div>
+    
+
+
+
+    <!-- <div class="buscar">
+                    <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
+                    <label for="valoracion">Valoración:</label>
+                    <select name="valoracion" id="valoracion">
+                        <option value="1">1 Estrella</option>
+                        <option value="2">2 Estrellas</option>
+                        <option value="3">3 Estrellas</option>
+                        <option value="4">4 Estrellas</option>
+                        <option value="5" selected>5 Estrellas</option>
+                    </select>
+                </div> -->
+    <!-- RESTAURANTE -->
+ 
+
+
+
+
+
+
+
+
+
+
+    <div class="establecimientos" >
+        <div class="restaurantes" id="restaurante">
+            <div class="foto">
+                <img src="foto.jpg" alt="foto">
+            </div>
+            <div class="texto">
+                <h1>Telepizza</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
+            </div>
+            <div class="valoracion">
+                <h3>VALORACIÓN</h3>
+                <div class="estrellas-val">
+        <div class="val" id="file2">
+        <img src="{{ asset('imagenes comida/estrellas-valorar.png') }}" alt="Logo">
         </div>
-        <!-- RESTAURANTE -->
-        <div class="establecimientos">
-            <div class="restaurantes" id="restaurante">
-                <div class="foto">
-                    <img src="foto.jpg" alt="foto">
-                </div>
-                <div class="texto">
-                    <h1>Telepizza</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
-                </div>
-                <div class="valoracion">
-                    <h3>VALORACIÓN</h3>
-                    <p>5 Estrellas</p>
-                </div>
+
+        <progress id="file" max="5" value="3"></progress>
+    </div>
+    
             </div>
         </div>
-        <!-- FOOTER -->
-        <footer class="footer">
-            <div class="footer__center">
-                <div class="footer__fila">
-                    <ul class="footer__ul">
-                        <li class="footer__li"><a href="https://www.just-eat.es/help" class="footer__a">Ayuda</a></li>
-                        <li class="footer__li"><a href="#" class="footer__a">Iniciar sesión</a></li>
-                        <li class="footer__li"><a href="" class="footer__a">Regístrate</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/info/garantia-de-precio" class="footer__a">Garantía de precio</a></li>
-                    </ul>
-                    <ul class="footer__ul">
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/comida-china" class="footer__a">Comida china</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/kebab" class="footer__a">Kebab</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/pizza" class="footer__a">Pizza</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/sushi" class="footer__a">Sushi</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/comida-mexicana" class="footer__a">Comida mexicana</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi" class="footer__a">Más tipos de cocina</a></li>
-                    </ul>
-                    <ul class="footer__ul">
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/burger-king" class="footer__a">Burger King</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/mcdonalds" class="footer__a">McDonald's</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/telepizza" class="footer__a">Telepizza</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/papa-johns" class="footer__a">Papa John's</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/taco-bell" class="footer__a">Taco Bell</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas" class="footer__a">Más cadenas</a></li>
-                    </ul>
-                    <ul class="footer__ul">
-                        <li class="footer__li"><a href="https://www.justeattakeaway.com/" class="footer__a">Quienes somos</a></li>
-                        <li class="footer__li"><a href="https://careers.justeattakeaway.com/global/en" class="footer__a">Trabaja con nosotros</a></li>
-                        <li class="footer__li"><a href="https://restaurantes.just-eat.es/" class="footer__a">Regístra tu restaurante</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/info/terminos-y-condiciones" class="footer__a">Términos y Condiciones</a></li>
-                        <li class="footer__li"><a href="https://www.just-eat.es/info/legal-information" class="footer__a">Información legal</a></li>
-                    </ul>
-                </div>
+    </div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer__center">
+            <div class="footer__fila">
+                <ul class="footer__ul">
+                    <li class="footer__li"><a href="https://www.just-eat.es/help" class="footer__a">Ayuda</a></li>
+                    <li class="footer__li"><a href="#" class="footer__a">Iniciar sesión</a></li>
+                    <li class="footer__li"><a href="" class="footer__a">Regístrate</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/info/garantia-de-precio" class="footer__a">Garantía de precio</a></li>
+                </ul>
+                <ul class="footer__ul">
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/comida-china" class="footer__a">Comida china</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/kebab" class="footer__a">Kebab</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/pizza" class="footer__a">Pizza</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/sushi" class="footer__a">Sushi</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi/comida-mexicana" class="footer__a">Comida mexicana</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cerca-de-mi" class="footer__a">Más tipos de cocina</a></li>
+                </ul>
+                <ul class="footer__ul">
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/burger-king" class="footer__a">Burger King</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/mcdonalds" class="footer__a">McDonald's</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/telepizza" class="footer__a">Telepizza</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/papa-johns" class="footer__a">Papa John's</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas/taco-bell" class="footer__a">Taco Bell</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/a-domicilio/cadenas" class="footer__a">Más cadenas</a></li>
+                </ul>
+                <ul class="footer__ul">
+                    <li class="footer__li"><a href="https://www.justeattakeaway.com/" class="footer__a">Quienes somos</a></li>
+                    <li class="footer__li"><a href="https://careers.justeattakeaway.com/global/en" class="footer__a">Trabaja con nosotros</a></li>
+                    <li class="footer__li"><a href="https://restaurantes.just-eat.es/" class="footer__a">Regístra tu restaurante</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/info/terminos-y-condiciones" class="footer__a">Términos y Condiciones</a></li>
+                    <li class="footer__li"><a href="https://www.just-eat.es/info/legal-information" class="footer__a">Información legal</a></li>
+                </ul>
             </div>
-        </footer>
+        </div>
+    </footer>
     <?php
     }
     ?>

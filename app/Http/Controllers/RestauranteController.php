@@ -108,24 +108,13 @@ class RestauranteController extends Controller{
     }
      
     public function editarRestaurante(Request $request){
-<<<<<<< HEAD
-=======
         // $request->except('_token');
->>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
         $id = $request->input('id_restaurante');
         $restaurante = Restaurante::find($id);
         return response()->json($restaurante);
     }
 
     public function actualizarRestaurante(Request $request, $id){
-<<<<<<< HEAD
-        $restaurante = Restaurante::findOrFail($id);
-        $restaurante->nombre_restaurante = $request->nombre_restaurante;
-        $imagen = $request->file('imagen_restaurante');
-        if ($imagen) {
-            $nombre_imagen = time().'.'.$imagen->extension();
-            $imagen->move(public_path('img/restaurantes'),$nombre_imagen);
-=======
         
         $restaurante = Restaurante::findOrFail($id);
         $restaurante->nombre_restaurante = $request->nombre_restaurante;
@@ -138,7 +127,6 @@ class RestauranteController extends Controller{
         if ($imagen) {
             $nombre_imagen = time().'.'.$imagen->extension();
             $imagen->move(public_path('/storage/uploads'),$nombre_imagen);
->>>>>>> 5b7935675e2f075fecec4a7afccd3c4bdaa8b240
             $restaurante->imagen_restaurante = $nombre_imagen;
         }
         $restaurante->update();
