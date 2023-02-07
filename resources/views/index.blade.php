@@ -25,8 +25,8 @@
             <h3>Comida a domicilio online cerca de ti</h3>
                 <form action="{{url('loginpost')}}" method="POST">
                     @csrf
-                    <input type="text" id="email" name="email_user" placeholder="Usuario">
-                    <input type="password" id="password" name="password_user" placeholder="Contraseña">
+                    <input id="in" type="text" id="email" name="email_user" placeholder="Usuario">
+                    <input  id="in" type="password" id="password" name="password_user" placeholder="Contraseña">
                     <button type="submit" name="entrar" id="entrar">ENTRAR</button>
                 </form>
                 <p class="registro">¿Aún no estás registrado? Regístrate <a href="{{url('/register')}}">AQUÍ</a></p>

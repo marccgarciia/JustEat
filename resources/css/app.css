@@ -47,15 +47,15 @@
     box-shadow: 0 4px 16px -6px rgb(141, 141, 141);
     z-index: 1;
 }
-.logo img{
+.logo img {
     width: 180px;
     padding: 0px;
-    margin-left: 100%;
+    margin-left: 10%;
 }
 .usuario a{
     border: none;
     text-decoration: none;
-    font-size: 40px;
+    font-size: 35px;
     color: #313131;
 }
 .usuario a:hover{
@@ -101,6 +101,7 @@
     margin-bottom: 1.5%;
     font-weight: 500;
 }
+
 .login input{
     width: 100%;
     height: 50px; 
@@ -110,6 +111,10 @@
     margin-bottom: 2.5%;
     border: 1px solid #000000a1;
     color: #f36805;
+}
+#in {
+    width: 60%;
+    margin-left: 20%;
 }
 .login button{
     padding: 10px;
@@ -126,6 +131,7 @@
     background-color: #f36805;
     transition: all 0.4s;
 }
+
 .caja {
     width: 100%;
     height: 40vh;
@@ -182,11 +188,14 @@
 }
 
 /* CRUD */
-.formularioCrear{
+.formularioCrear {
     width: 100%;
     margin-top: 7.5%;
     color: white;
-  }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
   .imgPeliculas{
     width: 10%;
     margin-left: 45%;
@@ -202,19 +211,41 @@
     display: flex;
     flex-direction: column;
   }
-  
+  button.header__login {
+    background-color: #EF8633;
+    color: white;
+}
+button.header__login:hover {
+    border: 1px solid #EF8633;
+    background-color: white;
+    color: #EF8633;
+    transition: all 0.3s ease;
+
+}
   .form-group {
     width: 100%;
   }
-  .formAdminCrear input{
-    width: 20%;
-    margin-left:40%;
+  .formAdminCrear input {
+    width: 30%;
+    margin-left: 35%;
     background-color: white;
     border-radius: 3px;
-    border: 1px solid#757575;
+    border: 1px solid#75757524;
     color: black;
-    text-align:center;
-  }
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #00000024;
+}
 
   .header__login {
     padding: 0.4em 1em;
@@ -229,11 +260,11 @@
   margin-left: 45%;
   width: 10%;
 }
-.imgRestaurante{
+.imgRestaurante {
     width: 10%;
-    margin-left: 45%;
+    /* margin-left: 45%; */
     border-radius: 10px;
-  }
+}
 .main-container {
   margin-top: 2%;
   display: flex;
@@ -242,13 +273,16 @@
   color: rgb(3, 3, 3);
 }
 .div-table {
-  width: 80%;
-  text-align: center;
-  border: 1px solid#757575;
+    width: 80%;
+    text-align: center;
+    border: 1px solid#f36805;
+    font-size: 15px;
+
 }
 thead {
-  background-color:#303030;
+  background-color:#f36805;
   color: white;
+  border-radius: 10px;
 }
 tr:nth-child(even) {
   background-color: rgb(115, 115, 115);
@@ -603,6 +637,7 @@ tr:nth-child(even) {
   .footer__a {
     color: rgba(0, 0, 0, 0.836) ;
   }
+
 /* ------------------------------------------ */
 /* --------------RESPONSIVE------------------ */
 /* ------------------------------------------ */
@@ -669,3 +704,255 @@ tr:nth-child(even) {
 /* ------------------------------------------ */
 /* --------------DEL LOGIN------------------- */
 /* ------------------------------------------ */
+@media screen and (max-width: 800px) {
+    .formAdminCrear input {
+        width: 40%;
+        margin-left: 30%;
+        background-color: white;
+        border-radius: 3px;
+        border: 1px solid#75757524;
+        color: black;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+    .div-table {
+        width: 80%;
+        text-align: center;
+        border: 1px solid#f36805;
+        font-size: 11px;
+    }
+}
+@media screen and (max-width: 450px) {
+
+    .formAdminCrear input {
+        width: 50%;
+        margin-left: 25%;
+        background-color: white;
+        border-radius: 3px;
+        border: 1px solid#75757524;
+        color: black;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 12px;
+    }
+    button.header__login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 35%;
+        width: 30%;
+    }
+    button, input, optgroup, select, textarea {
+        margin: 0;
+        font-family: inherit;
+        font-size: 10px;
+        line-height: inherit;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid #00000024;
+    }
+    .div-table {
+        width: 80%;
+        text-align: center;
+        border: 1px solid#f36805;
+        font-size: 10px;
+    }
+}
+@media screen and (max-width: 1000px) {
+
+    .login {
+        width: 35%;
+        height: 50vh;
+        background-color: white;
+        border-radius: 15px;
+        position: relative;
+        top: 35%;
+        box-shadow: 0px 0px 13px -4px #00000083;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+    }
+}
+@media screen and (max-width: 900px) {
+
+    .login {
+        width: 40%;
+        height: 50vh;
+        background-color: white;
+        border-radius: 15px;
+        position: relative;
+        top: 35%;
+        box-shadow: 0px 0px 13px -4px #00000083;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .btn-outline-primary {
+        display: flex;
+        color: #007bff;
+        border-color: #007bff;
+        width: 15px;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+    }
+    .btn-outline-danger {
+        display: flex;
+        color: #dc3545;
+        border-color: #dc3545;
+        width: 15px;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+    }
+    .th-padding {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding: 5px;
+    }
+}
+@media screen and (max-width: 500px) {
+
+    .login {
+        width: 65%;
+        height: 50vh;
+        background-color: white;
+        border-radius: 15px;
+        position: relative;
+        top: 35%;
+        box-shadow: 0px 0px 13px -4px #00000083;
+        display: flex;
+        align-items: center;
+        font-size: 10px;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .div-table {
+        width: 80%;
+        text-align: center;
+        border: 1px solid#f36805;
+        font-size: 8px;
+    }
+    .btn-outline-primary {
+        display: flex;
+        color: #007bff;
+        border-color: #007bff;
+        width: 10px;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+    }
+    .btn-outline-danger {
+        display: flex;
+        color: #dc3545;
+        border-color: #dc3545;
+        width: 10px;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+    }
+}
+#registrar {
+    background-color: #f86404;
+    width: 20%;
+    color: white;
+    margin-left: 40%;
+}
+#registrar:hover{
+    background-color: white;
+    color: #f86404;
+    border: 1px solid #f86404;
+    transition: all 0.4s;
+}
+tr:nth-child(even) {
+    background-color: rgb(255 245 233);
+}
+
+/* ------------------------------------------ */
+/* ----------------LANDPAGE------------------ */
+/* ------------------------------------------ */
+
+.grande {
+    width: 100%;
+    height: 100vh;
+    background-image: url("https://images.unsplash.com/photo-1585759073397-5d05284dcd1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+/* ENLACE FOTO */
+/* https://images.unsplash.com/photo-1585759073397-5d05284dcd1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80 */
+.grande img{
+    width: 40%;
+}
+
+.cajon{
+    margin: 5%;
+}
+
+.regist{
+    width: 100px;
+    height: 50px;
+    border: none;
+    background-color: #EF8633;
+    color: white;
+    border-radius: 10px;
+    margin: 1% 1% 1% 0%;
+    font-size: 15px;
+}
+
+.regist:hover{
+    border: 2px solid #EF8633;
+    background-color:#ef843300;
+    transition: all 0.4s;
+}
+
+@media screen and (max-width: 600px) {
+    .grande img{
+        width: 70%;
+    }
+    .cajon {
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size: 12px;
+    }
+    .regist{
+        width: 100px;
+        height: 60px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .grande img{
+        width: 70%;
+    }
+    .cajon {
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size: 12px;
+        justify-content: center;
+    }
+    .regist {
+        width: 200px;
+        height: 60px;
+        margin: 10px;
+    }
+}
