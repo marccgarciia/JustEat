@@ -95,7 +95,7 @@
     ?>  
     <!-- PARTE USUARIO -->
     <div class="cajafiltro">
-        <div class="box flex">
+        <div class="cajita">
             @foreach ($data as $restaurantes)
             <form action="">
                 <img src="{{ asset('./imagenes comida/'.$restaurantes->imagen_tipo_comida) }}">
@@ -109,9 +109,7 @@
     <div class="wrap">
                     <div class="search">
                        <input type="text" class="searchTerm" placeholder="Buscar restaurante...">
-                       <button type="submit" class="searchButton">
-                         <i class="fa fa-search"></i>
-                      </button>
+
                     </div>
     </div>
     
@@ -144,14 +142,13 @@
     <div class="establecimientos" >
         <div class="restaurantes" id="restaurante">
             <div class="foto">
-                <img src="foto.jpg" alt="foto">
+                <img src="foto.jpg" alt="">
             </div>
             <div class="texto">
                 <h1>Telepizza</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
+                <p class="desc">Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
             </div>
             <div class="valoracion">
-                <h3>VALORACIÓN</h3>
                 <div class="estrellas-val">
         <div class="val" id="file2">
         <img src="{{ asset('imagenes comida/estrellas-valorar.png') }}" alt="Logo">
