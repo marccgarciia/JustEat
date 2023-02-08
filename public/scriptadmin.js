@@ -13,7 +13,7 @@ function listarRestaurantesAdmin(filtro){
             let box = '';
             restaurantes.forEach(element =>{
                 box += `<tr>
-                <td class="th-padding"> <img style="width:200px;height:100px" src="storage/uploads/${element.id_restaurante}.png" alt="Logo"></td>
+                <td class="th-padding"> <img style="width:200px;height:100px;border-radius:10px;" src="storage/uploads/${element.id_restaurante}.png" alt="Logo"></td>
                 <td class="th-padding">${element.nombre_restaurante}</td>
                 <td class="th-padding">${element.tipo_comida}</td>
                 <td class="th-padding">${element.email_restaurante}</td>
@@ -30,7 +30,6 @@ function listarRestaurantesAdmin(filtro){
     ajax.send(formdata);
 }
 listarRestaurantesAdmin('');
-
 /* FILTRO*/
 document.getElementById("buscar").addEventListener("keyup", () => {
     const filtro = document.getElementById("buscar").value;
@@ -74,14 +73,11 @@ registrar.addEventListener("click", (event) => {
     var formdata = new FormData(form);
     formdata.append('_token',csrf_token);
     var ajax = new XMLHttpRequest();
-
     if (id.value !== '') {
         ajax.open('POST', 'actualizarRestaurante/' + id.value);
-        
     } else {
         ajax.open('POST', 'crearRestaurante');
     }
-
     ajax.onload=function (){
         if(ajax.status === 200){
             respuesta = JSON.parse(ajax.responseText);//
@@ -106,61 +102,6 @@ registrar.addEventListener("click", (event) => {
     }
     ajax.send(formdata);
 });
-
-
-
-
-// registrar.addEventListener("click", () => {
-
-
-//     var form = document.getElementById('frm');
-        
-//     var formdata = new FormData(form);
-//     formdata.append('_token',csrf_token);
-//     // if (accion == 'actualizar') {
-//     //     formdata.append('_method','put');
-//     // }
-
-//     var ajax = new XMLHttpRequest();
-
-//     ajax.open('POST', 'crearRestaurante');
-//         ajax.onload=function (){
-//             // let respuesta = "Mal";
-            
-//             if(ajax.status==200){
-//                 respuesta = JSON.parse(ajax.responseText);
-                 
-//                 if (respuesta == "OK") {
-//                     listar('');
-//                     form.reset();
-//                     Swal.fire({
-//                         icon: 'success',
-//                         title: 'Registrado',
-//                         showConfirmButton: false,
-//                         timer: 1500
-//                     });
-                    
-//                 } else {  
-//                     // alert(respuesta);
-//                         Swal.fire({
-//                             icon: 'success',
-//                             title: 'Modificado',
-//                             showConfirmButton: false,
-//                             timer: 1500
-//                         });
-//                         registrar.value = "registrar";
-//                         id.value = "";
-//                         listar('');
-//                         form.reset();
-//                     }
-//             } else {
-//                 alert(respuesta);
-//             }
-//         }
-//         ajax.send(formdata);
-        
-
-// });
 /* EDITAR */
  function Editar(id) {
     var formdata = new FormData();

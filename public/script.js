@@ -17,6 +17,8 @@ function listarRestaurantes(filtro){
                 </div>
                 <div class="texto">
                     <h1>${element.nombre_restaurante}</h1>
+                </div>
+                <div class="texto">
                     <p>${element.descripcion_restaurante}</p>
                 </div>
                 <div class="valoracion">
@@ -30,7 +32,7 @@ function listarRestaurantes(filtro){
                 </div>
             </div>`;
             });
-            resultado.innerHTML = box;
+            resultado.innerHTML = str;
         }else{
             resultado.innerText = 'Error';
         }
