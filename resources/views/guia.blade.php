@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="{!! asset('../resources/css/app.css') !!}">
     <!-- TOKEN -->
     <meta name="delete" content="{{ csrf_token() }}" id="token">
-    <!-- SWA -->
-    
 </head>
 
 <body>
@@ -26,7 +24,6 @@
             <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
         </div>
         <div class="usuario">
-            <a href="perfil"><i class="fa-solid fa-circle-user"></i></a>
             <a href="{{url('/logoutpost')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
         </div>
     </div>
@@ -74,10 +71,8 @@
             <table class="div-table " style="margin-bottom: 5%;">
                 <thead>
                     <tr>
-                    <!-- <th class="th-padding">Id</th> -->
                     <th class="th-padding">Imagen </th>
                     <th class="th-padding">Nombre</th>
-                    
                     <th class="th-padding">Tipo Comida</th>
                     <th class="th-padding">Email</th>
                     <th class="th-padding">Descripción</th>
@@ -95,70 +90,24 @@
     ?>  
     <!-- PARTE USUARIO -->
     <div class="cajafiltro">
-        <div class="cajita">
+        <div class="box flex">
             @foreach ($data as $restaurantes)
             <form action="">
-                <img src="{{ asset('./imagenes comida/'.$restaurantes->imagen_tipo_comida) }}">
-                <h4 style="text-align:center; margin-top:4%">{{$restaurantes->tipo_comida}}</h4>
+                <a href=""><img src="{{ asset('./img/'.$restaurantes->imagen_tipo_comida) }}"></a>
+                <h4 style="text-align:center; margin-top:4%" class="text">{{$restaurantes->tipo_comida}}</h4>
             </form>
             @endforeach
         </div>
     </div>
-
-   
     <div class="wrap">
-                    <div class="search">
-                       <input type="text" class="searchTerm" placeholder="Buscar restaurante...">
-
-                    </div>
-    </div>
-    
-
-
-
-    <!-- <div class="buscar">
-                    <input type="text" name="buscar" id="buscar" placeholder="Buscar...">
-                    <label for="valoracion">Valoración:</label>
-                    <select name="valoracion" id="valoracion">
-                        <option value="1">1 Estrella</option>
-                        <option value="2">2 Estrellas</option>
-                        <option value="3">3 Estrellas</option>
-                        <option value="4">4 Estrellas</option>
-                        <option value="5" selected>5 Estrellas</option>
-                    </select>
-                </div> -->
-    <!-- RESTAURANTE -->
- 
-
-
-
-
-
-
-
-
-
-
-    <div class="establecimientos" >
-        <div class="restaurantes" id="restaurante">
-            <div class="foto">
-                <img src="foto.jpg" alt="">
-            </div>
-            <div class="texto">
-                <h1>Telepizza</h1>
-                <p class="desc">Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
-            </div>
-            <div class="valoracion">
-                <div class="estrellas-val">
-        <div class="val" id="file2">
-        <img src="{{ asset('imagenes comida/estrellas-valorar.png') }}" alt="Logo">
+        <div class="search">
+           <form action="" method="post" id="frmbusqueda">
+                <input type="text" class="searchTerm" name="buscar" id="buscar" placeholder="Buscar...">
+             </form> 
         </div>
-
-        <progress id="file" max="5" value="3"></progress>
     </div>
-    
-            </div>
-        </div>
+    <div id="establecimientos"class="establecimientos" >
+        <!-- CONTENIDO -->
     </div>
     <!-- FOOTER -->
     <footer class="footer">
@@ -199,8 +148,8 @@
     <?php
     }
     ?>
-    <script src="{{asset('scriptadmin.js')}}"></script>
-
+<script src="{{asset('scriptadmin.js')}}"></script>
+<script src="{{asset('script.js')}}"></script>
 </body>
 
 </html>

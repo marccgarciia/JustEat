@@ -1,7 +1,6 @@
 var csrf_token = document.getElementById('token').content; 
-
 function listarRestaurantes(filtro){  
-    var resultado = document.getElementById("resultado");
+    var resultado = document.getElementById("establecimientos");
     var formdata = new FormData(); 
     formdata.append('_token',csrf_token);
     formdata.append('buscar',filtro);
@@ -10,17 +9,30 @@ function listarRestaurantes(filtro){
     ajax.onload= function (){
         if(ajax.status == 200){
             let users = JSON.parse(ajax.responseText);
-            // console.log(ajax.responseText);
             let str = '';
             users.forEach(element =>{
-                str += `<div class='foto'><img src + ${element.imagen_restaurante}+"></div>
-                <td class="th-padding">${element.id} </td>
-                <td class="th-padding">${element.nombre_user}</td>
-                <td class="th-padding">${element.email_user}</td>
-                <td class="th-padding"><button type='button' class='btn btn-danger' onclick=Eliminar('${element.id}')>Eliminar</button></td>
-            </tr>`;
+                str += `<div class="restaurantes" id="restaurante">
+                <div class="foto">
+                    <img src="storage/uploads/${element.id_restaurante}.png" alt="foto">
+                </div>
+                <div class="texto">
+                    <h1>${element.nombre_restaurante}</h1>
+                </div>
+                <div class="texto2">
+                    <p>${element.descripcion_restaurante}</p>
+                </div>
+                <div class="valoracion">
+
+                    <div class="estrellas-val">
+                        <div class="val" id="file2">
+                            <img src="img/estrellas-valorar.png" alt="Logo">
+                        </div>
+                        <progress id="file" max="5" value="${element.media}"></progress>
+                    </div>
+                </div>
+            </div>`;
             });
-            resultado.innerHTML = box;
+            resultado.innerHTML = str;
         }else{
             resultado.innerText = 'Error';
         }

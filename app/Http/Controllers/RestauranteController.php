@@ -11,7 +11,11 @@ class RestauranteController extends Controller{
     /*------VISTAS----- */
     /* INDEX */
     public function index(){
-        return view('index');
+        return view('/index');
+    }
+    /* LOGIN */
+    public function login(){
+        return view('login');
     }
     /* REGISTER */
     public function register(){
@@ -80,6 +84,18 @@ class RestauranteController extends Controller{
             return response()->json($resu2);
         }
     }
+    /* LISTAR ESTABLECIMIENTOS */
+    public function listarRestaurantes(Request $request){
+        $buscar = $request->input('buscar');
+        if(empty($buscar)) {
+            $resu1 = DB::select(DB::raw("SELECT * FROM restaurantes"));
+            return response()->json($resu1);
+        } else {
+            $resu2 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE (nombre_restaurante LIKE '%".$buscar."%')"));
+            return response()->json($resu2);
+        }
+    }
+
     /* ELIMINAR RESTAURANTE */
     public function eliminarRestaurante(Request $request) {
         $id = $request->input('id');
