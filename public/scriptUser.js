@@ -1,11 +1,11 @@
 var csrf_token = document.getElementById('token').content; 
-function listarRestaurantesAdmin(filtro){  
+function listarUser(filtro){  
     var resultado = document.getElementById("resultado");
     var formdata = new FormData(); 
     formdata.append('_token',csrf_token);
     formdata.append('buscar',filtro);
     const ajax = new XMLHttpRequest();
-    ajax.open('POST','listarRestaurantesAdmin');
+    ajax.open('POST','listarUser');
     ajax.onload= function (){
         if(ajax.status == 200){
             let restaurantes = JSON.parse(ajax.responseText);
@@ -13,13 +13,11 @@ function listarRestaurantesAdmin(filtro){
             let box = '';
             restaurantes.forEach(element =>{
                 box += `<tr>
-                <td class="th-padding"> <img style="width:200px;height:100px;border-radius:10px;" src="storage/uploads/${element.id_restaurante}.png" alt="Logo"></td>
-                <td class="th-padding">${element.nombre_restaurante}</td>
-                <td class="th-padding">${element.tipo_comida}</td>
-                <td class="th-padding">${element.email_restaurante}</td>
-                <td class="th-padding">${element.descripcion_restaurante}</td>
-                <td class="th-padding"><button type='button' class='btn btn-outline-primary' onclick=Editar('${element.id_restaurante}')><i class="fa-solid fa-pen-to-square"></i></button></td>
-                <td class="th-padding"><button type='button' class='btn btn-outline-danger' onclick=Eliminar('${element.id_restaurante}')><i class="fa-solid fa-trash"></i></button></td>
+                <td class="th-padding"><img style="width:200px;height:100px;border-radius:10px;" src="storage/uploads/${element.id_user}.png" alt="Logo"></td>
+                <td class="th-padding">${element.nombre_user}</td>
+                <td class="th-padding">${element.email_user}</td>
+                <td class="th-padding"><button type='button' class='btn btn-outline-primary' onclick=Editar('${element.id_user}')><i class="fa-solid fa-pen-to-square"></i></button></td>
+                <td class="th-padding"><button type='button' class='btn btn-outline-danger' onclick=Eliminar('${element.id_user}')><i class="fa-solid fa-trash"></i></button></td>
             </tr>`;
             });
             resultado.innerHTML = box;
@@ -29,29 +27,28 @@ function listarRestaurantesAdmin(filtro){
     }
     ajax.send(formdata);
 }
-listarRestaurantesAdmin('');
+listarUser('');
 /* FILTRO*/
 document.getElementById("buscar").addEventListener("keyup", () => {
     const filtro = document.getElementById("buscar").value;
     if (filtro == "") {
-        listarRestaurantesAdmin('');
+        listarUser('');
     }else{
-        listarRestaurantesAdmin(filtro);
+        listarUser(filtro);
     }
 });
-
 function Eliminar(id){
     const formdata = new FormData();
     formdata.append('_token',csrf_token);
     formdata.append('_method','delete');
     formdata.append('id',id);
     const ajax = new XMLHttpRequest();
-    ajax.open("POST","eliminarRestaurante");
+    ajax.open("post","eliminarUser");
     ajax.onload = function(){
         if(ajax.status === 200){
             let respuesta = JSON.parse(ajax.responseText);
             if(respuesta.Resultado == "OK"){
-                listarRestaurantesAdmin('');
+                listarUser('');
                 Swal.fire({
                     icon: 'success',
                     title: 'Eliminado',
@@ -74,13 +71,13 @@ registrar.addEventListener("click", (event) => {
     formdata.append('_token',csrf_token);
     var ajax = new XMLHttpRequest();
     if (id.value !== '') {
-        ajax.open('POST', 'actualizarRestaurante/' + id.value);
+        ajax.open('POST', 'actualizarUser/' + id.value);
     } else {
-        ajax.open('POST', 'crearRestaurante');
+        ajax.open('POST', 'crearUser');
     }
     ajax.onload=function (){
         if(ajax.status === 200){
-            respuesta = JSON.parse(ajax.responseText);//
+            respuesta = JSON.parse(ajax.responseText);
             if (respuesta == "OK") {
                 Swal.fire({
                     icon: 'success',
@@ -89,12 +86,12 @@ registrar.addEventListener("click", (event) => {
                     timer: 1500
                 });
                 form.reset();
-                listarRestaurantesAdmin('');
+                listarUser('');
             } else{
                 registrar.value = "Registrar";
                 id.value = "";
                 form.reset();
-                listarRestaurantesAdmin('');
+                listarUser('');
                 } 
         } else {
             respuesta.innerText = 'Error';
@@ -106,18 +103,15 @@ registrar.addEventListener("click", (event) => {
  function Editar(id) {
     var formdata = new FormData();
     formdata.append('_token',csrf_token);
-    formdata.append('id_restaurante', id);
+    formdata.append('id_user', id);
     var ajax = new XMLHttpRequest();
-    ajax.open('POST', 'editarRestaurante');
+    ajax.open('POST', 'editarUser');
     ajax.onload=function (){
         if(ajax.status==200){
                 var json=JSON.parse(ajax.responseText);
-                document.getElementById('id').value = json.id_restaurante;
-                document.getElementById('nombre_restaurante').value = json.nombre_restaurante;
-                document.getElementById('imagen_restaurante').file = json.imagen_restaurante;
-                document.getElementById('tipo_comida').value = json.tipo_comida;
-                document.getElementById('email_restaurante').value = json.email_restaurante;
-                document.getElementById('descripcion_restaurante').value = json.descripcion_restaurante;
+                document.getElementById('id').value = json.id_user;
+                document.getElementById('nombre_user').value = json.nombre_user;
+                document.getElementById('email_user').value = json.email_user;
                 document.getElementById('registrar').value = "actualizar"
             }
         }

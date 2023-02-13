@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,11 +27,9 @@
                 <H1>¿Quieres comida a domicilio?</H1>
                 <p>¡Regístrate/Inicia sesión y pide tu lugar favorito!</p>
             </div>
-            <a href="{{url('/register')}}"><button type="submit" class="regist">REGISTRAR</button></a>
-            <a href="{{url('/login')}}"><button type="submit" class="regist">ENTRAR</button></a>
+            <a href="{{url('register')}}"><button type="submit" class="regist">REGISTRAR</button></a>
+            <a href="{{url('login')}}"><button type="submit" class="regist">ENTRAR</button></a>
         </div>
    </div>
-
 </body>
-
 </html>

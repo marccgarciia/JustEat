@@ -8,15 +8,17 @@ class CreateRestaurantesTable extends Migration{
 
     public function up(){
         Schema::create('restaurantes', function (Blueprint $table) {
-            $table->increments('id_restaurante');
-            $table->string('nombre_restaurante', 20);
-            $table->string('imagen_restaurante', 255);
-            $table->integer('tipo_comida');
-            $table->decimal('media', 10, 1);
+            $table->bigIncrements('id_restaurante');
+            $table->string('nombre_restaurante', 50);
+            $table->string('imagen_restaurante', 255)->default('0.png');
+            $table->unsignedBigInteger('tipo_comida');
+            $table->decimal('media', 10, 1)->default(0);
             $table->string('email_restaurante', 50);
             $table->string('descripcion_restaurante', 150);
             $table->timestamps();
-        });        
+            $table->foreign('tipo_comida')->references('id_cocina')->on('cocinas')->onDelete('cascade');
+        });
+            
     }
 
     public function down(){

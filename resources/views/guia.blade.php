@@ -16,26 +16,26 @@
     <link rel="stylesheet" href="{!! asset('../resources/css/app.css') !!}">
     <!-- TOKEN -->
     <meta name="delete" content="{{ csrf_token() }}" id="token">
-    <!-- SWA -->
-    
 </head>
 
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
-        </div>
-        <div class="usuario">
-            <a href="perfil"><i class="fa-solid fa-circle-user"></i></a>
-            <a href="{{url('/logoutpost')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
-        </div>
-    </div>
     <?php
     $email = session()->get('email_user');
     $admin = session()->get('is_admin');
     if ($admin == 1) {
     ?>
-        <!--PARTE ADMINISTRADR -->
+    <!--PARTE ADMINISTRADR -->
+        <div class="navbar">
+            <div class="logo">
+                <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
+            </div>
+            <div class="usuario1">
+                <a href="{{url('/crudUsers')}}"><i class="fa-solid fa-user"></i></a>
+            </div>
+            <div class="usuario">
+                <a href="{{url('/logoutpost')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </div>
         <div class="formularioCrear">
             <!-- FOTO -->
             <img class="imgRestaurante" src="{{ asset('img/logo_res.png') }}" alt="">
@@ -74,10 +74,8 @@
             <table class="div-table " style="margin-bottom: 5%;">
                 <thead>
                     <tr>
-                    <!-- <th class="th-padding">Id</th> -->
                     <th class="th-padding">Imagen </th>
                     <th class="th-padding">Nombre</th>
-                    
                     <th class="th-padding">Tipo Comida</th>
                     <th class="th-padding">Email</th>
                     <th class="th-padding">Descripción</th>
@@ -93,70 +91,32 @@
 <?php
 }else{
     ?>  
+    <div class="navbar">
+        <div class="logo">
+            <img src="{{ asset('img/justEatLogo.png') }}" alt="Logo">
+        </div>
+        <div class="usuario">
+            <a href="{{url('/logoutpost')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+    </div>
     <!-- PARTE USUARIO -->
     <div class="cajafiltro">
-        <div class="box flex">
-            @foreach ($data as $restaurantes)
-            <form action="">
-                <img src="{{ asset('./img/'.$restaurantes->imagen_tipo_comida) }}">
-                <h4 style="text-align:center; margin-top:4%">{{$restaurantes->tipo_comida}}</h4>
-            </form>
-            @endforeach
+        <div class="box flex" id="listarTipoComida">
+            <!-- RESULTADO -->
+            <div></div>
         </div>
+        
     </div>
-
-   
     <div class="wrap">
-                    <div class="search">
-                       <input type="text" class="searchTerm" placeholder="Buscar restaurante...">
-                       <button type="submit" class="searchButton">
-                         <i class="fa fa-search"></i>
-                      </button>
-                    </div>
-    </div>
-    
-
-    <!-- RESTAURANTE -->
-
-    <div class="establecimientos" id="establecimientos">
-        <div class="restaurantes">
-            <div class="foto">
-                <img src="foto.jpg" alt="foto">
-            </div>
-            <div class="texto">
-                <h1>Telepizza</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
-            </div>
-            <div class="valoracion">
-                <h3>VALORACIÓN</h3>
-                <div class="estrellas-val">
-                    <div class="val" id="file2">
-                        <img src="{{ asset('img/estrellas-valorar.png') }}" alt="Logo">
-                    </div>
-                    <progress id="file" max="5" value="3"></progress>
-                </div>
-            </div>
-        </div>
-        <div class="restaurantes" id="restaurante">
-            <div class="foto">
-                <img src="foto.jpg" alt="foto">
-            </div>
-            <div class="texto">
-                <h1>Telepizza</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipiscing elit dictum metus, mus nibh cubilia hac est laoreet gravida quam lobortis molestie, leo fringilla vivamus pharetra eleifend primis ac nisi.</p>
-            </div>
-            <div class="valoracion">
-                <h3>VALORACIÓN</h3>
-                <div class="estrellas-val">
-                    <div class="val" id="file2">
-                        <img src="{{ asset('img/estrellas-valorar.png') }}" alt="Logo">
-                    </div>
-                    <progress id="file" max="5" value="2"></progress>
-                </div>
-            </div>
+        <div class="search">
+           <form action="" method="post" id="frmbusqueda">
+                <input type="text" class="searchTerm" name="buscar" id="buscar" placeholder="Buscar...">
+             </form> 
         </div>
     </div>
-   
+    <div id="establecimientos" class="establecimientos" name="establecimientos">
+        <!-- CONTENIDO -->
+    </div>
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer__center">
@@ -196,8 +156,7 @@
     <?php
     }
     ?>
-    <script src="{{asset('scriptadmin.js')}}"></script>
-
+<script src="{{asset('scriptadmin.js')}}"></script>
+<script src="{{asset('script.js')}}"></script>
 </body>
-
 </html>

@@ -8,8 +8,8 @@ class CreateCocinasTable extends Migration{
 
     public function up(){
         Schema::create('cocinas', function (Blueprint $table) {
-            $table->increments('id_cocina');
-            $table->integer('tipo_comida');
+            $table->bigIncrements('id_cocina');
+            $table->string('tipo_comida');
             $table->string('imagen_tipo_comida', 255);
         });
     }
