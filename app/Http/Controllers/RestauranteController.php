@@ -24,9 +24,13 @@ class RestauranteController extends Controller{
         return view('register');
     }
     /* GUIA DE RESTAURANTES */
-    public function guia(){
-        $data=DB::table('cocinas')->get();
-        return view('guia',compact('data'));
+    public function guia(Request $request){
+        if (!$request->session()->has('email_user')){
+            return redirect('/');
+        } else {
+            $data=DB::table('cocinas')->get();
+            return view('guia',compact('data'));
+        }
     }
     /* REGISTERPOST */
     public function registerpost(Request $request){
@@ -39,6 +43,7 @@ class RestauranteController extends Controller{
             'nombre_user' => $request->input('nombre_user'),
             'email_user' => $request->input('email_user'),
             'password_user' => sha1($request->input('password_user')),
+            'imagen_user' => '0.png',
             'is_admin' => '0'
             ]);
             return redirect('/');
@@ -51,18 +56,18 @@ class RestauranteController extends Controller{
 
         if ($existe == 1){
             if($admin == 1){
-                $request->session()->put(['email_user',$usuario['email_user'], 'is_admin' => '1']);
+                $request->session()->put(['email_user'=> $usuario['email_user'], 'is_admin' => '1']);
                 //TE LLEVA A LA GUIA DE RESTAURANTES
                 return redirect('/guia');
             }else{
-                $request->session()->put(['email_user',$usuario['email_user'], 'is_admin' => '0']);
+                $request->session()->put(['email_user'=> $usuario['email_user'], 'is_admin' => '0']);
+                //$request->session()->put('email_user', $usuario['email_user']);
                 //TE LLEVA A LA GUIA DE RESTAURANTES
                 return redirect('/guia');
             }
         }else{
             //TE LLEVA AL LOGUIN
-            return redirect('/');
-            
+            return redirect('/'); 
         } 
     }
     /* LOGOUT */
@@ -87,59 +92,22 @@ class RestauranteController extends Controller{
         }
     }
     /* LISTAR ESTABLECIMIENTOS */
-    public function listarRestaurantes(Request $request){
-        
+    public function listarRestaurantes(Request $request){ 
         $value = $request->input('value');
         $buscar = $request->input('buscar');
-        if($value==0){
-            if(empty($buscar)) {
-                $resu1 = DB::select(DB::raw("SELECT * FROM restaurantes"));
-                return response()->json($resu1);
-            } else {
-                $resu2 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE (nombre_restaurante LIKE '%".$buscar."%')"));
-                return response()->json($resu2);
-            }
-        }elseif($value==1){
-            if(empty($buscar)) {
-                $resu3 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value"));
-                return response()->json($resu3);
-            } else {
-                $resu2 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value AND (nombre_restaurante LIKE '%".$buscar."%')"));
-                return response()->json($resu2);
-            }
-        }elseif($value==2){
-            if(empty($buscar)) {
-                $resu4 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value"));
-                return response()->json($resu4);
-            } else {
-                $resu5 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value AND (nombre_restaurante LIKE '%".$buscar."%')"));
-                return response()->json($resu5);
-            }
-        }elseif($value==3){
-            if(empty($buscar)) {
-                $resu6 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value"));
-                return response()->json($resu6);
-            } else {
-                $resu7 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value AND (nombre_restaurante LIKE '%".$buscar."%')"));
-                return response()->json($resu7);
-            }
-        }elseif($value==4){
-            if(empty($buscar)) {
-                $resu8 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value"));
-                return response()->json($resu8);
-            } else {
-                $resu9 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value AND (nombre_restaurante LIKE '%".$buscar."%')"));
-                return response()->json($resu9);
-            }
-        }elseif($value==5){
-            if(empty($buscar)) {
-                $resu10 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value"));
-                return response()->json($resu10);
-            } else {
-                $resu11 = DB::select(DB::raw("SELECT * FROM restaurantes WHERE tipo_comida = $value AND (nombre_restaurante LIKE '%".$buscar."%')"));
-                return response()->json($resu11);
-            }
+        $query = "SELECT * FROM restaurantes";
+        $whereConditions = [];
+        if (!empty($buscar)) {
+            $whereConditions[] = "nombre_restaurante LIKE '%".$buscar."%'";
         }
+        if (!empty($value)) {
+            $whereConditions[] = "tipo_comida = $value";
+        }
+        if (!empty($whereConditions)) {
+            $query .= " WHERE " . implode(" AND ", $whereConditions);
+        }
+        $result = DB::select(DB::raw($query));
+        return response()->json($result);
     }
     /* LISTAR TIPO COMIDA */
     public function listarTipoComida(Request $request){
@@ -156,6 +124,7 @@ class RestauranteController extends Controller{
             return response()->json(['Resultado' => 'Error, algo ha ido mal']);
         }
     }
+    /* CREA RESTAURANTE */
     public function crearRestaurante(Request $request){
         $restaurante = $request->except('_token');
         $id = Db::table('restaurantes')->insertGetId(['nombre_restaurante' => $restaurante['nombre_restaurante'],'tipo_comida' => $restaurante['tipo_comida'],'email_restaurante' => $restaurante['email_restaurante'],'descripcion_restaurante' => $restaurante['descripcion_restaurante'],'imagen_restaurante' => $restaurante['imagen_restaurante']]);
@@ -165,6 +134,7 @@ class RestauranteController extends Controller{
         }  
         return response()->json(['Resultado' => 'OK']);
     } 
+    /* MUESTRA EL CONTENIDO */
     public function editarRestaurante(Request $request){
         // $request->except('_token');
         $id = $request->input('id_restaurante');
@@ -172,35 +142,29 @@ class RestauranteController extends Controller{
         return response()->json($restaurante);
     }
     public function actualizarRestaurante(Request $request, $id){
-        
         $restaurante = Restaurante::findOrFail($id);
-        $restaurante->nombre_restaurante = $request->nombre_restaurante;
-        $restaurante->tipo_comida = $request->tipo_comida;
-        $restaurante->email_restaurante = $request->email_restaurante;
-        $restaurante->descripcion_restaurante = $request->descripcion_restaurante;
-        // $restaurante->imagen_restaurante = $request->imagen_restaurante;
-
-        $imagen = $request->file('imagen_restaurante');
-        if ($imagen) {
+        $restaurante->fill($request->only([
+            'nombre_restaurante',
+            'tipo_comida',
+            'email_restaurante',
+            'descripcion_restaurante'
+        ]));
+        if ($request->hasFile('imagen_restaurante')) {
+            $imagen = $request->file('imagen_restaurante');
             $nombre_imagen = time().'.'.$imagen->extension();
-            $imagen->move(public_path('/storage/uploads'),$nombre_imagen);
+            $imagen->move(public_path('/storage/uploads'), $nombre_imagen);
             $restaurante->imagen_restaurante = $nombre_imagen;
         }
-        $co=$request->input('email_restaurante');
-        $sub="ACTUALIZACION DE RESTAURANTE ".$co;
-
-        //cuerpo mensaje
-        $msg="Mensaje";
-        $nombre=$restaurante['nombre_restaurante'];
-        $correo=$restaurante['email_restaurante'];
-        $tipoComida=$restaurante['tipo_comida'];
-        $descripcion=$restaurante['descripcion_restaurante'];
-        $datos=array('msg' => $msg,'nombre_restaurante'=> $nombre,'email_restaurante'=> $correo,'tipo_comida'=> $tipoComida,'descripcion_restaurante'=> $descripcion);
-
-        $enviar=new EnviarCorreo($datos);
-        $enviar->sub=$sub;
-        Mail::to($co)->send($enviar);
-        $restaurante->update();
+        $restaurante->save();
+        Mail::to($restaurante->email_restaurante)
+            ->send(new EnviarCorreo([
+                'sub' => "ACTUALIZACION DE RESTAURANTE " . $restaurante->email_restaurante,
+                'msg' => 'Mensaje',
+                'nombre_restaurante' => $restaurante->nombre_restaurante,
+                'email_restaurante' => $restaurante->email_restaurante,
+                'tipo_comida' => $restaurante->tipo_comida,
+                'descripcion_restaurante' => $restaurante->descripcion_restaurante
+            ]));
         return response()->json(['Resultado' => 'OK']);
     }
     /* CRUD USER */
@@ -229,29 +193,30 @@ class RestauranteController extends Controller{
         }
     }
     /* CREAR USER POST */
-    public function crearUsers(Request $request){
+    public function crearUser(Request $request){
         $user = $request->except('_token');
-        $nombre_user = $request->input('nombre_user');
-        $id = Db::table('users')->insertGetId(['nombre_user' => $user['nombre_user'],'email_user' => $user['email_user'],'imagen_user' => $user['imagen_user']]);
-        if($request->hasFile("imagen_user")){ 
-            $request->file('imagen_user')->storeAs('uploads', $id.$nombre_user.'.png', 'public');
-            Db::table('users')->where('id_user', $id)->update(['imagen_user' => $id.'.png']);
-        }  
-        return response()->json(['Resultado' => 'OK']);
+        $nombre_usuario = $request->input('nombre_user');
+        
+        if(!$request->hasFile("imagen_user")){
+            $id = Db::table('users')->insertGetId(['nombre_user' => $user['nombre_user'],'email_user' => $user['email_user'],'imagen_user' => '0.png','password_user' => '7c4a8d09ca3762af61e59520943dc26494f8941b']);
+        }else{
+            $id = Db::table('users')->insertGetId(['nombre_user' => $user['nombre_user'],'email_user' => $user['email_user'],'imagen_user' => $user['imagen_user'],'password_user' => '7c4a8d09ca3762af61e59520943dc26494f8941b']);
+            $request->file('imagen_user')->storeAs('uploads', $id.$nombre_usuario.'.png', 'public');
+            Db::table('users')->where('id_user', $id)->update(['imagen_user' => $id.$nombre_usuario.'.png']);
+        }
+        return response()->json(['Resultado' => 'OK']);  
     }
     /* EDITAR USER */
     public function editarUser(Request $request){
-        // $request->except('_token');
         $id = $request->input('id_user');
         $user = User::find($id);
         return response()->json($user);
     }
-    /* Actualizar User */
+    /*ACTUALIZAR USER*/
     public function actualizarUser(Request $request, $id){
         $user = User::findOrFail($id);
         $user->nombre_user = $request->nombre_user;
         $user->email_user = $request->email_user;
-        /*         $user->imagen_user = $request->imagen_user; */
         $imagen = $request->file('imagen_user');
         if ($imagen) {
             $nombre_imagen = time().'.'.$imagen->extension();
@@ -261,16 +226,42 @@ class RestauranteController extends Controller{
         $user->update();
         return response()->json(['Resultado' => 'OK']);
     }
-
+    /* INFO RESTAURANTE*/
     public function infoRestaurante(Request $request, $id){
-    $sesion= $request->session()->get('id_user');
+        $consulta=DB::table('restaurantes')->where('id_restaurante',$id)->get();
+        $consulta1=DB::table('restaurantes')->join('cocinas', 'cocinas.id_cocina', '=', 'restaurantes.tipo_comida')->where('restaurantes.id_restaurante', '=', $id)->get();
+        $consulta2=DB::table('comentarios')->join('restaurantes', 'restaurantes.id_restaurante','=','comentarios.id_restaurante')->where('comentarios.id_restaurante','=',$id)->get();
+        $consulta3=DB::table('users')->get();
+        return view('inforestaurantes', compact('consulta','consulta1','consulta2','consulta3'));
+    }
 
-   
-    $consulta=DB::table('restaurantes')->where('id_restaurante',$id)->get();
-    $consulta1=DB::table('cocinas')->where('id_cocina',$id)->get();
-    // $consulta2=DB::table('comentarios')->where('id_comentario',$id)->get();
+    public function valoraciones(Request $request){
+        $valoracion= $request->except('_token');
+        $sesion=session()->get('id_user');
+        $nota=2;
+        $parte=$request->headers->get('referer');
+        $id=explode("/", $parte);
     
-    return view('inforestaurantes', compact('consulta','consulta1'));
+        $consulta=DB::table('comentarios')->where('id_restaurante','=', end($id))->where('id_user','=',$sesion)->count();
+        if($consulta==1){
+            $resultado="";
+        }else{
+            if(empty($request['comentario'])){
+                $request="";
+            }
+            DB::table('comentarios')->insertGetId(['id_restaurante'=>end($id),'id_user'=>2, 'nota'=>$nota,'comentario'=>$request['comentario']]);
+    
+            $media=DB::table('comentarios')->select('nota')->where('id_restaurante','=', end($id))->get();
+            $users=DB::table('comentarios')->where('id_restaurante','=',end($id))->count();
+            $nueva_media=0;
+            foreach($media as $media_user){
+                $nueva_media += $media_user->nota;
+            }
+    
+            $resultado=$nueva_media/$users;
+            DB::table('restaurantes')->where('id_restaurante','=',end($id))->update(['media'=>$resultado]);
+            return view('/guia');
+        }
     }
 }
 

@@ -13,7 +13,7 @@ function listarUser(filtro){
             let box = '';
             restaurantes.forEach(element =>{
                 box += `<tr>
-                <td class="th-padding"><img style="width:200px;height:100px;border-radius:10px;" src="storage/uploads/${element.id_user}.png" alt="Logo"></td>
+                <td class="th-padding2"><img class="fto" src="storage/uploads/${element.imagen_user}" alt="Logo"></td>
                 <td class="th-padding">${element.nombre_user}</td>
                 <td class="th-padding">${element.email_user}</td>
                 <td class="th-padding"><button type='button' class='btn btn-outline-primary' onclick=Editar('${element.id_user}')><i class="fa-solid fa-pen-to-square"></i></button></td>

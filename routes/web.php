@@ -43,8 +43,4 @@ Route::get('/logoutpost',[RestauranteController::class, 'logoutpost']);
 
 //RUTA INFO RESTAURANTE
 Route::get('/info/{id}',[RestauranteController::class, 'infoRestaurante']);
-
-
-// INSERT VALORACIONES
-// Route::get('/pintar_media',[RestauranteController::class, 'pintar_media']);
-// Route::post('/insert_punt',[RestauranteController::class, 'insert_punt']);
+Route::post('/valoraciones',[RestauranteController::class, 'valoraciones']);

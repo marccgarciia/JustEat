@@ -14,7 +14,7 @@ function listarRestaurantes(id,filtro){
             users.forEach(element =>{
                 str += `<div class="restaurantes" name="restaurante">
                 <div class="foto">
-                    <img style='cursor:pointer' src="storage/uploads/${element.id_restaurante}.png" alt="foto">
+                    <img style="cursor:pointer" src="storage/uploads/${element.id_restaurante}.png" alt="foto">
                 </div>
                 <div class="texto">
                     <h1>${element.nombre_restaurante}</h1>
@@ -32,7 +32,6 @@ function listarRestaurantes(id,filtro){
                 </div>
             </div>`;
             });
-            
             resultado.innerHTML = str;
             var info=document.getElementsByName('establecimientos');
             for(let i=0;i<info.length;i++){
@@ -44,8 +43,6 @@ function listarRestaurantes(id,filtro){
     }
     ajax.send(formdata);
 }
-
-
 function verInfo(evt){
     // console.log('sadas');
     var route=evt.target.src;
@@ -55,7 +52,6 @@ function verInfo(evt){
     console.log(id[0]);
     window.location.href="info/" + id[0];
 }
-
 function listarTipoComida(){  
     var resultado = document.getElementById("listarTipoComida");
     var formdata = new FormData(); 

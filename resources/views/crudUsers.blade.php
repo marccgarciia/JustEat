@@ -49,6 +49,7 @@
                     <div class="form-group">
                         <input type="text" name="email_user" id="email_user" placeholder="Correo">
                     </div>
+                        
                     <div class="form-group">
                         <input type="file" name="imagen_user" id="imagen_user">
                     </div>
@@ -85,6 +86,7 @@
 }
 ?>
 <script src="{{asset('scriptUser.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>
